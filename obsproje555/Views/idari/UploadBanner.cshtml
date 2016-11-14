@@ -1,0 +1,49 @@
+﻿<div class="sidebar-left">
+    &nbsp;
+    <ul>
+        <li>
+            <a>Öğrencileri listele</a>
+        </li>
+        <li>
+            <a>Öğretmenleri listele</a>
+        </li>
+        <li>
+            <a>İdari elemanları listele</a>
+        </li>
+        <li>
+            <a>Duyuru yap</a>
+        </li>
+        <li>
+            <a>Siteyi düzenle</a>
+        </li>
+        <li>
+            <a>Şifreni değiştir</a>
+        </li>
+        <li>
+            <a>Fotoğraf ekle</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("Logout", "idari", FormMethod.Post))
+            {
+                <input type="submit" value="Çıkış yap" />
+            }
+        </li>
+    </ul>
+</div>
+<div class="center">
+    &nbsp;
+    @using (Html.BeginForm("UploadBanner", "idari", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" value="Yükle" />
+    }
+    </div>
+<div class="sidebar-right">
+</div>
+
+
+
+@{
+    ViewBag.Title = "UploadPicture";
+}
+
