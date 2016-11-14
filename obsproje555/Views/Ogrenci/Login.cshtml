@@ -1,0 +1,16 @@
+﻿@model Ogrenci
+
+@{
+    ViewBag.Title = "Login";
+}
+<div class="login">
+    <fieldset>
+        <legend>Öğrenci girişi</legend>
+        <form action="/Ogrenci/Login" method="post">
+            <span>Id:</span><input type="text" name="Id" /><br />
+            <span>Şifre:</span><input type="password" name="Password" /><br />
+            <input type="submit" value="Giriş yap" /><br />
+            <a href="/Home">Ana sayfaya dön</a>
+        </form>
+    </fieldset>
+</div>

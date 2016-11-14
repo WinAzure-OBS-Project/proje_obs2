@@ -1,0 +1,85 @@
+﻿@model Ogrenci
+<div class="row">
+    <div class="sidebar-left col">
+        &nbsp;
+        <ul>
+            <li>
+                <a>Transkripti gör</a>
+            </li>
+            <li>
+                <a>Ders programını gör</a>
+            </li>
+            <li>
+                <a>Danışman bilgilerim</a>
+            </li>
+            <li>
+                <a>Not hesaplama aracı</a>
+            </li>
+            <li>
+                <a>Öğrenci ders kaynakları</a>
+            </li>
+            <li>
+                <a>Ders seç</a>
+            </li>
+            <li>
+                <a>Sınav sonuçlarını gör</a>
+            </li>
+            <li>
+                <a>Şifreni değiştir</a>
+            </li>
+            <li>
+                <a href="/Ogrenci/UploadProfilePicture">Fotoğraf ekle</a>
+            </li>
+            <li>
+                @using (Html.BeginForm("Logout", "Ogrenci", FormMethod.Post))
+            {
+                    <input class="logout" type="submit" value="Çıkış yap" />
+                }
+            </li>
+        </ul>
+    </div>
+    <div class="center col">
+        &nbsp;
+        <fieldset>
+            <legend>Öğrenci Bilgileri</legend>
+            <table>
+                <tr>
+                    <td>Öğrenci Numarası:</td>
+                    <td>@Model.OgrenciNo</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci Adı:</td>
+                    <td>@Html.Encode(Model.Ad)</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci Soyadı:</td>
+                    <td>@Html.Encode(Model.Soyad)</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci Doğum Tarihi:</td>
+                    <td>@Model.DogumTarihi</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci Aktif Kayıt Dönemi:</td>
+                    <td>@Model.AktifKayitDonemi</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci E-posta:</td>
+                    <td>@Model.Eposta</td>
+                </tr>
+                <tr>
+                    <td>Öğrenci Telefonu:</td>
+                    <td>@Model.Telefon</td>
+                </tr>
+
+            </table>
+        </fieldset>
+        <div class="photo">
+            <img style="width:100%" src="@_Storage.ReturnUrl(User.Identity.Name + ".jpg")" alt="henüz foto yüklenmemiş" />
+        </div>
+    </div>
+    <div class="sidebar-right col">
+        &nbsp;
+    </div>
+
+</div>
