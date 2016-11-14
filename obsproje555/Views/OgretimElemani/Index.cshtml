@@ -1,0 +1,77 @@
+﻿@model DersSorumlulari
+<div class="row">
+<div class="sidebar-left col">
+    &nbsp;
+    <ul>
+        <li>
+            <a>Dersleri görüntüle</a>
+        </li>
+        <li>
+            <a>Sınav sonucu gir</a>
+        </li>
+        <li>
+            <a>Devamsızlık bilgisi gir</a>
+        </li>
+        <li>
+            <a>Danışmanı olduğu öğrencileri görüntüle</a>
+        </li>
+        <li>
+            <a>Ders not ağırlığı düzenle</a>
+        </li>
+        <li>
+            <a>Mesaj at</a>
+        </li>
+        <li>
+            <a>Proje alan öğrenciler</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/UploadProfilePicture">Fotoğraf ekle</a>
+        </li>
+        <li>
+            <a>Şifreni değiştir</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("Logout", "OgretimElemani", FormMethod.Post))
+            {
+                <input class="logout" type="submit" value="Çıkış yap" />
+            }
+        </li>
+    </ul>
+</div>
+<div class="center col">
+    &nbsp;
+    <fieldset>
+        <legend>Öğretmen Bilgileri</legend>
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>@Model.AkademisyenID</td>
+            </tr>
+            <tr>
+                <td>Bölüm kodu</td>
+                <td>@Model.BolumKodu</td>
+            </tr>
+            <tr>
+                <td>Adı Soyadı</td>
+                <td>@Html.Encode(Model.Adi + " " + Model.Soyadi)</td>
+            </tr>
+            <tr>
+                <td>Telefonu</td>
+                <td>@Model.Telefonu</td>
+            </tr>
+            <tr>
+                <td>Maili</td>
+                <td>@Model.Maili</td>
+            </tr>
+
+        </table>
+    </fieldset>
+    <div class="photo">
+        <img style="width:100%" src="@_Storage.ReturnUrl(User.Identity.Name + ".jpg")" alt="henüz foto yüklenmemiş" />
+    </div>
+</div>
+<div class="sidebar-right col">
+    &nbsp;
+</div>
+    </div>
+
