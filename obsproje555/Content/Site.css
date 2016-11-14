@@ -1,5 +1,5 @@
-﻿body {
-    padding-top: 50px;
+body {
+    padding-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -9,16 +9,99 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.top {
+    height:75px;
+    text-align:center;
+    background-color:aqua;
+}
+
+.body {
+    margin-top:20px;
+    background-color:darkgray;
+}
+
+.body-container {
+    height:600px;
+    width:100%;
+    display:inline-block;
+}
+
+.sidebar-left {
+    float:left;
+    display:inline-block;
+    background-color:aqua;
+    width:16%;
+    margin:auto 5px;
+}
+
+.center {
+    float:left;
+    display:inline-block;
+    background-color:aqua;
+    width:65%;
+    margin:auto 5px;
+}
+
+.sidebar-right {
+    float:left;
+    display:inline-block;
+    background-color:aqua;
+    width:16%;
+    margin:auto 5px;
+}
+
+fieldset {
+    width:65%;
+    display:inline-block;
+}
+
+.photo {
+    width:30%;
+    display:inline-block;
+}
+
+ul li {
+    background-color:aliceblue;
+    padding:2px 3px;
+    margin:2px;
+    border:solid 1px yellow;
+    border-radius:10px;
+}
+
+.logout {
+    background-color:aliceblue;
+    border:none;
+}
+
+div.login {
+    text-align:center;
+}
+
+.login fieldset {
+    width:35%;
+    background-color:aqua
+}
+
+.login legend {
+    background-color:aquamarine
+}
+
+.login span {
+    display:inline-block;
+    width:60px;
+}
+
+.row {
+    overflow: hidden;
+}
+.col {
+    padding-bottom: 100%;
+    margin-bottom: -100%;
 }
