@@ -1,5 +1,5 @@
 İdari giriş yapar.
-İdari soldan ders seçme/ekleme tarihleri bölümüne girer.
+İdari soldan ders seçme/ekleme tarihleri bölümüne girer. (Tüm bölümlerin aynı zamanda ders seçeceğini ve tüm idarilerin yetkili olduğunu varsaydım, değiştirilebilir önemsiz detay)
 Ekrana ilgili form gelir.
 İdari, ilgili tarihleri girer.
 İdari kaydet'e tıklar
