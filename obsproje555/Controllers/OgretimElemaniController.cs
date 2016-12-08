@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using proje_obs.Models;
 
 namespace proje_obs.Controllers
 {
@@ -25,15 +24,15 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(OgretimElemani ogretimElemani)
+        public ActionResult Login(DersSorumlulari ogretimElemani)
         {
-            ObsContext ctx = new ObsContext();
-            var ogr = ctx.OgretimElemanlari.FirstOrDefault(o => o.OgretimElemaniId == ogretimElemani.OgretimElemaniId &&
+            ObsDbContext ctx = new ObsDbContext();
+            var ogr = ctx.DersSorumlulari.FirstOrDefault(o => o.AkademisyenID == ogretimElemani.AkademisyenID &&
             o.Sifre == ogretimElemani.Sifre);
             if(ogr != null)
             {
-                Session.Add("Id", ogretimElemani.OgretimElemaniId);
-                Session.Add("Ad", ogr.Ad);
+                Session.Add("Id", ogretimElemani.AkademisyenID);
+                Session.Add("Ad", ogr.Adi);
                 Session.Add("Role", "OgretimElemani");
             }
             return RedirectToAction("Index");

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(obsproje555.Startup))]
-namespace obsproje555
+[assembly: OwinStartupAttribute(typeof(proje_obs.Startup))]
+namespace proje_obs
 {
     public partial class Startup
     {

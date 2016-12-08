@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace obsproje555
+namespace obsproje
 {
     public class BundleConfig
     {

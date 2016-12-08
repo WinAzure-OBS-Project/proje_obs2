@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
+//using Microsoft.WindowsAzure.Storage;
+//using Microsoft.WindowsAzure.Storage.Auth;
+//using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
 using System.Security.Claims;
 
@@ -61,35 +61,35 @@ namespace proje_obs.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = "Ogrenci")]
-        [HttpGet]
-        public ActionResult UploadProfilePicture()
-        {
-            return View();
-        }
+        //[Authorize(Roles = "Ogrenci")]
+        //[HttpGet]
+        //public ActionResult UploadProfilePicture()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult UploadProfilePicture(HttpPostedFileBase file) //files=resim olacak
-        {
-            if (Request.IsAuthenticated && (User.IsInRole("Ogrenci")))
-            {
-                if(_Storage.UploadFile(file, User.Identity.Name + ".jpg"))
-                {
-                    Console.WriteLine("başarılı");
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    Console.WriteLine("dosya yükleme başarısız");
-                    return RedirectToAction("Index");
-                }
-            }
-            else
-            {
-                TempData["Message"] = "Yetkiniz yok";
-                return RedirectToAction("Index", "Home");
-            }
-        }
+        //[HttpPost]
+        //public ActionResult UploadProfilePicture(HttpPostedFileBase file) //files=resim olacak
+        //{
+        //    if (Request.IsAuthenticated && (User.IsInRole("Ogrenci")))
+        //    {
+        //        if(_Storage.UploadFile(file, User.Identity.Name + ".jpg"))
+        //        {
+        //            Console.WriteLine("başarılı");
+        //            return RedirectToAction("Index");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("dosya yükleme başarısız");
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        TempData["Message"] = "Yetkiniz yok";
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
 
         public ActionResult AddPasswordsToDatabase()
         {

@@ -63,7 +63,7 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult UploadBanner(HttpPostedFileBase file)
         {
-            _Storage.UploadFile(file, "__banner.jpg");
+            //_Storage.UploadFile(file, "__banner.jpg");
             return RedirectToAction("Index");
         }
     }

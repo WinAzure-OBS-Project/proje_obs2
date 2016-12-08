@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace obsproje555
+namespace obsproje
 {
     public class FilterConfig
     {
