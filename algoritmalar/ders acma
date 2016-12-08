@@ -1,0 +1,6 @@
+Hoca sol menüden ders açma ekranına tıklar
+Ders açma döneminde ise;
+  Ekrana ders açma formu getir.
+  Hoca, ders ile ilgili ad,yarıyıl,kredi,bölüm bilgilerini girer.
+  Ders ekle'ye tıklar, bilgiler uygunsa db'ye kaydedilir.
+Değilse "şu an ders ekleyemezsiniz" yazar.
