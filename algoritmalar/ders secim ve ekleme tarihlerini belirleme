@@ -1,0 +1,6 @@
+İdari giriş yapar.
+İdari soldan ders seçme/ekleme tarihleri bölümüne girer.
+Ekrana ilgili form gelir.
+İdari, ilgili tarihleri girer.
+İdari kaydet'e tıklar
+Db'ye kaydedilir. (db'ye eğitim dönemi için ders seçme/ekleme tarihleri bilgisi eklenecek)
