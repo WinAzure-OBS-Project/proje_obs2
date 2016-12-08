@@ -1,0 +1,8 @@
+Öğretim görevlisi giriş yapar
+Soldan ders onaylamaya basar.
+Eger ders onay süresinde ise kayıt yapmış öğrenciler listesi gelir dbden.
+Her öğrencinin ismine tıkladığında seçtiği derslerin görüldüğü pencere açılır.
+Öğretim görevlisi kaydete basar.
+Bu dersler öğrencinin derslerine eklenir dbde.
+Onaylandı olarak değişir ders kaydı o öğrenci için.
+Liste bitene kadar 4,5,6,7 devam eder.
