@@ -1,4 +1,5 @@
-1)Ders açma isteği
-2)dersi alan öğrencileri görme
+1)Ders aÃ§ma isteÃ°i
+2)dersi alan Ã¶Ã°rencileri gÃ¶rme
 3)not girme
-4)devamsızlık girme
+4)devamsÄ±zlÄ±k girme
+5)eÄŸer danÄ±ÅŸmansa, Ã¶ÄŸrencilerin ders seÃ§imlerini onaylama
