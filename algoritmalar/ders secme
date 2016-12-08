@@ -1,0 +1,15 @@
+Öğrenci giriş yapar
+Soldaki menüden ders seçme ekranına geçer
+Eğer ders dönemi ise,
+  Şu şartları sağlayan dersleri db'den getir:List Dersler = (ders.yariyil<öğrenci.aktifYıl && ders.bolum==ogrenci.bolum)
+  Öğrencinin o dönemde alabileceği max_kredi = max. krediyi getir.
+  List Dersler'i ekrana seçilebilecek şekilde listele.
+  Öğrenci almak istediği dersleri seçer.
+  Öğrenci, dersleri seç butonuna tıklar.
+  kredi > max_kredi ise:
+    ekrana "max krediyi aştınız" yaz
+    7.satıra git
+  Seçilen dersleri ve öğrenci id'yi post et.
+  db'ye kaydet.
+Ders dönemi değilse ekrana "ders döneminde değiliz" yaz
+  
