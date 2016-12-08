@@ -1,0 +1,4 @@
+1)Ders açma isteði
+2)dersi alan öðrencileri görme
+3)not girme
+4)devamsýzlýk girme
