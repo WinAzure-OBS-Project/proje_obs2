@@ -1,0 +1,4 @@
+1) ogretim elemanı sisteme giris yapar
+2) sol koseden verdigi dersler butonuna tıklar ve db den verdigi dersler ekrana gelir
+3) Ekrana gelen verdigi derslerden istedigi dersi secer 
+4) Onune gelen sayfadan ogrencileri goruntule butonuna tıklar ve db den o dersi alan ogrenciler cekilir ve ekranda goruntulenir
