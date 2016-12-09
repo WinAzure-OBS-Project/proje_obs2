@@ -171,6 +171,7 @@
     <Compile Include="Controllers\OgretimElemaniController.cs" />
     <Compile Include="Dersler.cs" />
     <Compile Include="DersSorumlulari.cs" />
+    <Compile Include="DersTarihler.cs" />
     <Compile Include="Donemler.cs" />
     <Compile Include="EgitimPlani.cs" />
     <Compile Include="Fakulte.cs" />
@@ -179,6 +180,7 @@
     </Compile>
     <Compile Include="Idari.cs" />
     <Compile Include="Kayit.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Notlar.cs" />
     <Compile Include="ObsDbContext.cs" />
     <Compile Include="Ogrenci.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="_Membership.cs" />
     <Compile Include="_Storage.cs" />
+    <Compile Include="Statikler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -230,6 +233,7 @@
     <Content Include="Views\OgretimElemani\Index.cshtml" />
     <Content Include="Views\OgretimElemani\Login.cshtml" />
     <Content Include="Views\OgretimElemani\UploadProfilePicture.cshtml" />
+    <Content Include="Views\OgretimElemani\DersSecmeTalepleriniGor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

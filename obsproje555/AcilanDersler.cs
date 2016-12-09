@@ -23,5 +23,7 @@ namespace proje_obs
         public int? YariYil { get; set; }
 
         public int? YilDers { get; set; }
+
+        public bool OnaylandiMi { get; set; }
     }
 }

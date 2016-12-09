@@ -14,5 +14,7 @@ namespace proje_obs
         public int? ADId { get; set; }
 
         public int? OgrenciNo { get; set; }
+
+        public bool OnaylandiMi { get; set; }
     }
 }

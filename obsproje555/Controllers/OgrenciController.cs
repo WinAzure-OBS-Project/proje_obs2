@@ -91,6 +91,7 @@ namespace proje_obs.Controllers
         //    }
         //}
 
+        //YÖNETİMSEL
         public ActionResult AddPasswordsToDatabase()
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -117,5 +118,49 @@ namespace proje_obs.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //ilk açılış, ders seçme haftasıysa tüm dersleri göster, değilse hata ekranı ayarla
+        [HttpGet]
+        public ActionResult DersSecme()
+        {
+            bool DersSecmeHaftasi= false;
+            //
+            if(DersSecmeHaftasi)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        //bir ders seçildiğinde ders kodu post edilecek, bir tür session cookie'sinde falan geçici olarak seçilmiş dersler tutulacak
+        [HttpPost]
+        public ActionResult DersSecme(int dersId)
+        {
+            //
+            return View();
+        }
+
+        //max kredi kontrolü yap, 
+        [HttpPost]
+        public ActionResult DersSecimKaydet()
+        {
+            bool MaxKrediAsilmadi = false;
+            //
+            if(MaxKrediAsilmadi)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TranskriptGor()
+        {
+            return View();
+        }
+
     }
 }

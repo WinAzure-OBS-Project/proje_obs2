@@ -66,5 +66,37 @@ namespace proje_obs.Controllers
             //_Storage.UploadFile(file, "__banner.jpg");
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult DersSecmeTarihiBelirle()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DersSecmeTarihiBelirle(String baslangic, String bitis)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DersEklemeTarihiBelirle(String baslangic, String bitis)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DersEklemeTalepleriListele()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DersEklemeTalebiniOnayla(int DersEklemeTalebiId)
+        {
+            return View("DersEklemeTalepleriListele");
+        }
+
+        
     }
 }

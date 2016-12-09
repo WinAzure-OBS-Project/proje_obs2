@@ -23,6 +23,7 @@ namespace proje_obs
         public virtual DbSet<Kayit> Kayit { get; set; }
         public virtual DbSet<Notlar> Notlar { get; set; }
         public virtual DbSet<Ogrenci> Ogrenci { get; set; }
+        public virtual DbSet<DersTarihler> DersTarihler { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
