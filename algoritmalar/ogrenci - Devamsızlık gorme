@@ -1,5 +1,6 @@
 1) Ogrenci sisteme giris yapar
 2) Sol köseden Devamsızlık görme butonuna tıklar
-3) O dönem aldıgı bütün dersler ders tablosundan cekilir
-4) Aldıgı derslerdeki devamsızlık kısmı cekilir
-5) Cekilen veriler ogrenciye ekranda gosterilir
+3) Ogrenci yıl aralıgı secer
+4) Sectigi donemde aldıgı bütün dersler ders tablosundan cekilir
+5) Aldıgı derslerdeki devamsızlık kısmı cekilir
+6) Cekilen veriler ogrenciye ekranda gosterilir
