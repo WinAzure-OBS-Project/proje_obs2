@@ -48,19 +48,24 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecmeTalepleriniGor()
         {
-            return View();
+            List<Kayit> kayitlar = null;
+            //
+            return View(kayitlar);
         }
 
         [HttpGet]
         public ActionResult DersSecmeTalebiniIncele(int dersEklemeTalebiId)
         {
-            return View();
+            Kayit kayit = null;
+            //
+            return View(kayit);
         }
 
         [HttpPost]
         public ActionResult DersSecmeTalebiniOnayla(int dersEklemeTalebiId)
         {
-            return View();
+            //
+            return RedirectToAction("DersSecmeTalepleriniGor");
         }
 
         [HttpGet]
@@ -75,8 +80,25 @@ namespace proje_obs.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                //
+                return RedirectToAction("DersEklemeTaleplerimiListele");
             }
+        }
+
+        [HttpGet]
+        public ActionResult DersEklemeTaleplerimiListele()
+        {
+            List<AcilanDersler> taleplerim = null;
+            //
+            return View(taleplerim);
+        }
+
+
+        [HttpPost]
+        public ActionResult TalebimiSil(int acilanDersId)
+        {
+            //
+            return RedirectToAction("DersEklemeTaleplerimiListele");
         }
 
         [HttpPost]
@@ -89,21 +111,33 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult BuSenekiDerslerimiGor()
         {
+            List<AcilanDersler> dersler = null;
             //
-            return View();
+            return View(dersler);
+        }
+
+        //başka yıl
+        [HttpGet]
+        public ActionResult BaskaSenekiDerslerimiGor(int yil)
+        {
+            List<AcilanDersler> dersler = null;
+            //
+            return View(dersler);
         }
 
         //kayıt tablosundan çekilecek
         [HttpGet]
         public ActionResult SinavSonuclariGir(int dersId)
         {
+            List<Kayit> kayitlar = null;
             //
-            return View();
+            return View(kayitlar);
         }
 
         [HttpPost]
         public ActionResult SinavSonucunuKaydet(int kayitId /*değişikliğin yapıldığı kayıt parametreleri*/)
         {
+
             //
             return View();
         }

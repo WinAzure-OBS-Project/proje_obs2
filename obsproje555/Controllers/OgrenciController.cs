@@ -123,43 +123,62 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecme()
         {
+
             bool DersSecmeHaftasi= false;
             //
             if(DersSecmeHaftasi)
             {
-                return View();
+                //
+
+                return View();//seçebileceği dersleri döndür
             }
             else
             {
+                //
                 return RedirectToAction("Index");
             }
         }
 
         //bir ders seçildiğinde ders kodu post edilecek, bir tür session cookie'sinde falan geçici olarak seçilmiş dersler tutulacak
+        //önceki senelerde aldığı dersleri de tekrar alabilir
         [HttpPost]
         public ActionResult DersSecme(int dersId)
         {
             //
-            return View();
+            return RedirectToAction("Index");
         }
 
-        //max kredi kontrolü yap, 
+        //max kredi kontrolü yap,
+        //minimum kredi kontrolü yap 
         [HttpPost]
         public ActionResult DersSecimKaydet()
         {
-            bool MaxKrediAsilmadi = false;
+            bool krediDurumuUygunMu = false;
+            //kredi durumunu kontrol et
             //
-            if(MaxKrediAsilmadi)
+            if(krediDurumuUygunMu)
             {
+                //dbye kaydet
+                //
                 return RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index");//hata raporu döndür, tempdata
         }
 
         [HttpGet]
         public ActionResult TranskriptGor()
         {
-            return View();
+            List<Kayit> kayitlar = null;//db'den çek
+            //
+            return View(kayitlar);
+        }
+
+        [HttpGet]
+        public ActionResult SinavSonuclarimiGor(int yil)
+        {
+            List<Kayit> kayitlar = null;//db'den çek
+            //
+            return View(kayitlar);
         }
 
     }

@@ -180,7 +180,6 @@
     </Compile>
     <Compile Include="Idari.cs" />
     <Compile Include="Kayit.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Notlar.cs" />
     <Compile Include="ObsDbContext.cs" />
     <Compile Include="Ogrenci.cs" />
@@ -234,9 +233,18 @@
     <Content Include="Views\OgretimElemani\Login.cshtml" />
     <Content Include="Views\OgretimElemani\UploadProfilePicture.cshtml" />
     <Content Include="Views\OgretimElemani\DersSecmeTalepleriniGor.cshtml" />
+    <Content Include="Views\idari\DersSecmeTarihiBelirle.cshtml" />
+    <Content Include="Views\idari\DersEklemeTarihiBelirle.cshtml" />
+    <Content Include="Views\idari\DersEklemeTalepleriListele.cshtml" />
+    <Content Include="Views\Ogrenci\DersSecme.cshtml" />
+    <Content Include="Views\Ogrenci\SinavSonuclarimiGor.cshtml" />
+    <Content Include="Views\Ogrenci\TranskriptGor.cshtml" />
+    <Content Include="Views\OgretimElemani\DersSecmeTalebiniIncele.cshtml" />
+    <Content Include="Views\OgretimElemani\DersEklemeTalebi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

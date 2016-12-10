@@ -54,12 +54,14 @@ namespace proje_obs.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //storage iptal
         [HttpGet]
         public ActionResult UploadBanner()
         {
             return View();
         }
 
+        //storage iptal
         [HttpPost]
         public ActionResult UploadBanner(HttpPostedFileBase file)
         {
@@ -70,31 +72,44 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecmeTarihiBelirle()
         {
+            //
             return View();
         }
 
         [HttpPost]
         public ActionResult DersSecmeTarihiBelirle(String baslangic, String bitis)
         {
+            //
             return View();
         }
 
         [HttpGet]
+        public ActionResult DersEklemeTarihiBelirle()
+        {
+            //
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult DersEklemeTarihiBelirle(String baslangic, String bitis)
         {
+            //
             return View();
         }
 
         [HttpGet]
         public ActionResult DersEklemeTalepleriListele()
         {
-            return View();
+            List<AcilanDersler> eklemeTalepleri = null;
+            //
+            return View(eklemeTalepleri);
         }
 
         [HttpPost]
         public ActionResult DersEklemeTalebiniOnayla(int DersEklemeTalebiId)
         {
-            return View("DersEklemeTalepleriListele");
+            //
+            return RedirectToAction("DersEklemeTalepleriListele");
         }
 
         
