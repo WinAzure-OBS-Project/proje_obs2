@@ -1,0 +1,7 @@
+1) Ogretim elemanı sisteme giris yapar
+2) Sol köseden Verdigi Dersler butonuna tıklar ve verdigi dersler ekranda listelenir
+3) Ekrana gelen verdigi derslerden istedigi dersi secer 
+4)Onune gelen sayfadan ogrencileri goruntule butonuna tıklar ve db den o dersi alan ogrenciler cekilir ve ekranda goruntulenir
+5) Ogrencının adı ve soyadı kısmana tıklar ve acılan ekranda devamsızlık gir butonuna tıklar
+6)Ogretim elemanı, ogrencinin devamsızlıgını girer ve islemi kaydeder
+7) Ogrenci devamsızlık girisi bitene kadar 5 ve 6 adımlar tekrarlanır
