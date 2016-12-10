@@ -123,12 +123,13 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecme()
         {
+            ObsDbContext ctx = new ObsDbContext();
             List<AcilanDersler> secilebilecekDersler = null;
             if(Session["secilmis"] == null)
             {
                 Session["secilmis"] = new List<AcilanDersler>();
             }
-            //
+            
             bool DersSecmeHaftasi= false;
             //
             if(DersSecmeHaftasi)
