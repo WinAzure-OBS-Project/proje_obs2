@@ -5,3 +5,11 @@
 
 <h2>DersEklemeTalebi</h2>
 
+@using (Html.BeginForm("DersEklemeTalebi", "OgretimElemani"))
+{
+    <span>Ders adı:</span><input type="text" name="DersAdı"/><br />
+    <span>Ders kodu:</span><input type="text" name="DersKodu"/><br />
+    <span>Yarı yıl:</span><input type="text" name="Yariyil"/><br />
+    <!--Başka bilgiler de olabilir, tasarım düzenlenecek-->
+    <input type="submit" value="gönder"/>
+}

@@ -1,0 +1,24 @@
+﻿@using proje_obs
+@{
+    ViewBag.Title = "SinavSonuclariGir";
+}
+
+<h2>SinavSonuclariGir</h2>
+
+@{ 
+    List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
+    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
+    List<Ogrenci> ogrenciler = (List<Ogrenci>)ViewBag.ogrenciler;
+    kayitlar.OrderBy(kayit => kayit.OgrenciNo);
+    
+    foreach(var kayit in kayitlar)
+    {
+        using (Html.BeginForm("SinavSonucunuKaydet", "OgretimElemani"))
+        {
+            <input type="hidden" value="@kayit.KayitId" name="kayitId" />
+            <span>Ogrenci adı:</span><span>@ogrenciler.First(o=>o.OgrenciNo == kayit.OgrenciNo).Ad</span>
+            <span>Vize:</span><input type="text" value="@notlar.First(not=>not.KayitId == kayit.KayitId).Vize" name="VizeNotu"/>
+            <input type="submit" value="Kaydet"/>
+        }<br />
+    }
+}

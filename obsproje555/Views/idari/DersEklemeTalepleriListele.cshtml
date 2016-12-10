@@ -1,7 +1,17 @@
-﻿
+﻿@using proje_obs
+@model List<AcilanDersler>
 @{
     ViewBag.Title = "DersEklemeTalepleriListele";
 }
 
 <h2>DersEklemeTalepleriListele</h2>
 
+@foreach(AcilanDersler ders in Model)
+{
+    using (Html.BeginForm("DersEklemeTalebiniOnayla", "idari"))
+    {
+        <!--Bilgileri görüntüle-->
+        <input type="hidden" value="@ders.ADId" name="acilanDersId"/>
+        <input type="submit" />
+    }
+}

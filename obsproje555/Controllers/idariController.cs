@@ -106,7 +106,7 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult DersEklemeTalebiniOnayla(int DersEklemeTalebiId)
+        public ActionResult DersEklemeTalebiniOnayla(int acilanDersId)
         {
             //
             return RedirectToAction("DersEklemeTalepleriListele");

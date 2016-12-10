@@ -241,6 +241,10 @@
     <Content Include="Views\Ogrenci\TranskriptGor.cshtml" />
     <Content Include="Views\OgretimElemani\DersSecmeTalebiniIncele.cshtml" />
     <Content Include="Views\OgretimElemani\DersEklemeTalebi.cshtml" />
+    <Content Include="Views\OgretimElemani\BaskaSenekiDerslerimiGor.cshtml" />
+    <Content Include="Views\OgretimElemani\SinavSonuclariGir.cshtml" />
+    <Content Include="Views\OgretimElemani\DersEklemeTaleplerimiListele.cshtml" />
+    <Content Include="Views\OgretimElemani\BuSenekiDerslerimiGor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,7 +1,22 @@
-﻿
+﻿@using proje_obs
+@model List<Kayit>
 @{
     ViewBag.Title = "DersSecmeTalebiniIncele";
 }
 
 <h2>DersSecmeTalebiniIncele</h2>
 
+@{
+    Ogrenci o = (Ogrenci)ViewBag.ogrenci;
+
+    using (Html.BeginForm("DersSecmeTalebiniOnayla", "OgretimElemani"))
+    {
+        <span>Ogrenci adı: @o.Ad</span><br />
+        foreach (var kayit in Model)
+        {
+            <!--Kayıt bilgilerini göster bilmemne--><br />
+        }
+        <input type="hidden" value="@o.OgrenciNo" name="OgrenciNo"/>
+        <input type="submit" value="Onayla" />
+    }
+}

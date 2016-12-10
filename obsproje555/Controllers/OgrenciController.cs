@@ -123,14 +123,19 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecme()
         {
-
+            List<AcilanDersler> secilebilecekDersler = null;
+            if(Session["secilmis"] == null)
+            {
+                Session["secilmis"] = new List<AcilanDersler>();
+            }
+            //
             bool DersSecmeHaftasi= false;
             //
             if(DersSecmeHaftasi)
             {
                 //
 
-                return View();//seçebileceği dersleri döndür
+                return View(secilebilecekDersler);//seçebileceği dersleri döndür
             }
             else
             {
@@ -144,8 +149,9 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult DersSecme(int dersId)
         {
-            //
-            return RedirectToAction("Index");
+
+            //session'a dersi ekle
+            return RedirectToAction("DersSecme");
         }
 
         //max kredi kontrolü yap,
@@ -158,7 +164,7 @@ namespace proje_obs.Controllers
             //
             if(krediDurumuUygunMu)
             {
-                //dbye kaydet
+                //session'dan dbye kaydet
                 //
                 return RedirectToAction("Index");
             }
@@ -168,17 +174,22 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult TranskriptGor()
         {
-            List<Kayit> kayitlar = null;//db'den çek
+            //db'den öğrencinin id'si ile eşleşenleri bul
+            ViewBag.acilanDersler = null;//
+            ViewBag.kayitlar = null;//
+            ViewBag.notlar = null;//
             //
-            return View(kayitlar);
+            return View();
         }
 
         [HttpGet]
         public ActionResult SinavSonuclarimiGor(int yil)
         {
-            List<Kayit> kayitlar = null;//db'den çek
+            //db'den çek, öğrencinin o yılki ders ve sonuçları dictionary'e at
+            Dictionary<AcilanDersler, Notlar> sonuclar = null;
             //
-            return View(kayitlar);
+            ViewBag.sonuclar = sonuclar;
+            return View();
         }
 
     }

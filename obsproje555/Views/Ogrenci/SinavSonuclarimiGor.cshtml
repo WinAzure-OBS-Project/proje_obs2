@@ -1,7 +1,14 @@
-﻿
+﻿@using proje_obs
+
 @{
     ViewBag.Title = "SinavSonuclarimiGor";
 }
 
 <h2>SinavSonuclarimiGor</h2>
-
+@{
+    Dictionary<AcilanDersler, Notlar> sonuclar = (Dictionary<AcilanDersler, Notlar>)ViewBag.ogrencininSonuclari;
+}
+@foreach(KeyValuePair<AcilanDersler, Notlar> pair in sonuclar)
+{
+    <!--Bilgiler falan filan-->
+}

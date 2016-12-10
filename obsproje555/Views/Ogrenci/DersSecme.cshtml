@@ -1,7 +1,31 @@
-﻿
+﻿@using proje_obs
+@model List<AcilanDersler>
 @{
     ViewBag.Title = "DersSecme";
 }
 
 <h2>DersSecme</h2>
 
+@foreach(var ders in Model)
+{
+    using (Html.BeginForm("DersSecme", "Ogrenci"))
+    {
+        <div>@ders.DersAdi</div>
+        <input type="hidden" value="@ders.ADId" name="dersId" />
+        <input type="submit" value="ekle"/>
+    }
+}
+
+<h2>Seçilenler:</h2>
+@{ 
+    List<AcilanDersler> SecilmisOlanlar = (List<AcilanDersler>)Session["secilmis"];
+    foreach(AcilanDersler secilmis in SecilmisOlanlar)
+    {
+        <!--Bilgileri göster, ilerde çıkarma seçeneği eklenecek-->
+    }
+    using (Html.BeginForm("DersSecimKaydet", "Ogrenci"))
+    {
+        <!--server tarafında viewbagdekileri dbye kaydet, controller'da-->
+        <input type="submit" value="Kaydet" />
+    }
+}

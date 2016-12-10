@@ -1,7 +1,23 @@
-﻿
+﻿@using proje_obs
 @{
     ViewBag.Title = "TranskriptGor";
 }
 
 <h2>TranskriptGor</h2>
 
+@{ 
+    List<AcilanDersler> acilanDersler = (List<AcilanDersler>)ViewBag.acilanDersler;
+    List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
+    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
+
+    acilanDersler.OrderBy(acilanDers => acilanDers.YariYil);
+
+    foreach(var acilanDers in acilanDersler)
+    {
+        
+        <!--bilgiler gösterilcek htmlde, mvclik iş yok. ama lojik kısım, db'de OR yapısı tam olmadığından karışık gelebilir-->
+        <!--Yarıyıllara göre gruplanacak-->
+    }
+
+
+}
