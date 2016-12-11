@@ -14,10 +14,12 @@ namespace proje_obs
         [ForeignKey(ADId)]
         public int? ADId { get; set; }
 
+        [ForeignKey(OgrenciNo)]
         public int? OgrenciNo { get; set; }
 
         public bool OnaylandiMi { get; set; }
 
         public virtual AcilanDersler AcilanDers { get; set; }
+        public virtual Ogrenci Ogrenciler { get; set; }
     }
 }
