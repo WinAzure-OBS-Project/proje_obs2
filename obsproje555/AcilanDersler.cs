@@ -18,6 +18,7 @@ namespace proje_obs
         [StringLength(50)]
         public string DersAdi { get; set; }
 
+        [ForeignKey(AkademisyenId)]
         public int? AkademisyenId { get; set; }
 
         public int? YariYil { get; set; }
@@ -25,5 +26,8 @@ namespace proje_obs
         public int? YilDers { get; set; }
 
         public bool OnaylandiMi { get; set; }
+
+        public virtual ICollection<Kayit> Kayitlar { get; set; }
+        public virtual DersSorumlulari DersSorumlusu { get; set; }
     }
 }
