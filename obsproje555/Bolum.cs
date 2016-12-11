@@ -29,5 +29,6 @@ namespace proje_obs
         public virtual Fakulte fakulte { get; set; }
         public virtual ICollection<Idari> idari { get; set; }
         public virtual ICollection<EgitimPlani> egitimplani { get; set; }
+        public virtual ICollection<DersSorumlulari> DersSorumlusu { get; set; }
     }
 }
