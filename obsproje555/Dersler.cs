@@ -28,10 +28,13 @@ namespace proje_obs
         public int? UygulamaDersSaati { get; set; }
 
         [StringLength(50)]
-        [ForeignKey(Donem)]
         public string Donem { get; set; }
 
-        public virtual ICollection<AcilanDersler> AcilanDers { get; set; }
+        [ForeignKey("Donem")]
         public virtual Donemler donem { get; set; }
+
+        public virtual ICollection<AcilanDersler> AcilanDersler { get; set; }
+
+        
     }
 }

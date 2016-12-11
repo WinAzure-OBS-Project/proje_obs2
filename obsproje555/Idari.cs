@@ -35,9 +35,10 @@ namespace proje_obs
         [StringLength(50)]
         public string Sifre { get; set; }
 
-        [ForeignKey(BolumId)]
+        
         public int? BolumId { get; set; }
 
+        [ForeignKey("BolumId")]
         public virtual Bolum bolumler { get; set; }
     }
 }

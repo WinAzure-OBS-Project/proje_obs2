@@ -13,14 +13,18 @@ namespace proje_obs
         public int ADId { get; set; }
 
         [StringLength(50)]
-        [ForeignKey(DersKodu)]
         public string DersKodu { get; set; }
+
+        [ForeignKey("DersKodu")]
+        public virtual Dersler Ders { get; set; }
 
         [StringLength(50)]
         public string DersAdi { get; set; }
-
-        [ForeignKey(AkademisyenId)]
+        
         public int? AkademisyenId { get; set; }
+
+        [ForeignKey("AkademisyenId")]
+        public virtual DersSorumlulari DersSorumlusu { get; set; }
 
         public int? YariYil { get; set; }
 
@@ -28,8 +32,6 @@ namespace proje_obs
 
         public bool OnaylandiMi { get; set; }
 
-        public virtual ICollection<Kayit> Kayitlar { get; set; }
-        public virtual DersSorumlulari DersSorumlusu { get; set; }
-        public virtual Dersler Ders { get; set; } 
+        public virtual ICollection<Kayit> Kayitlar { get; set; } 
     }
 }

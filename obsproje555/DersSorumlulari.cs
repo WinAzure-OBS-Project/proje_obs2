@@ -31,13 +31,15 @@ namespace proje_obs
         public string OdaNo { get; set; }
 
         [StringLength(50)]
-        [ForeignKey(BolumKodu)]
         public string BolumKodu { get; set; }
+
+        [ForeignKey("BolumKodu")]
+        public virtual Bolum bolum { get; set; }
 
         [StringLength(50)]
         public string Sifre { get; set; }
 
-        public virtual ICollection<AcilanDersler> AcilanDers { get; set;}
-        public virtual Bolum bolum { get; set; }
+        public virtual ICollection<AcilanDersler> AcilanDersler { get; set;}
+        
     }
 }
