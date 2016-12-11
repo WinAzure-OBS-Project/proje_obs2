@@ -29,5 +29,7 @@ namespace proje_obs
 
         [StringLength(50)]
         public string Donem { get; set; }
+
+        public virtual ICollection<AcilanDersler> AcilanDers { get; set; }
     }
 }

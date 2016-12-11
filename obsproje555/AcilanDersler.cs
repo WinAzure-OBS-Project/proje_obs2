@@ -13,6 +13,7 @@ namespace proje_obs
         public int ADId { get; set; }
 
         [StringLength(50)]
+        [ForeignKey(DersKodu)]
         public string DersKodu { get; set; }
 
         [StringLength(50)]
@@ -29,5 +30,6 @@ namespace proje_obs
 
         public virtual ICollection<Kayit> Kayitlar { get; set; }
         public virtual DersSorumlulari DersSorumlusu { get; set; }
+        public virtual Dersler Ders { get; set; } 
     }
 }
