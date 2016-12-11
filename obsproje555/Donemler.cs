@@ -22,5 +22,7 @@ namespace proje_obs
         public int? Toplam_ders { get; set; }
 
         public int? Toplam_secmeli_sayisi { get; set; }
+
+        public virtual ICollection<Dersler> Ders { get; set; }
     }
 }
