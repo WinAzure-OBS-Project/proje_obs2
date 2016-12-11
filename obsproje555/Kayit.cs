@@ -21,5 +21,6 @@ namespace proje_obs
 
         public virtual AcilanDersler AcilanDers { get; set; }
         public virtual Ogrenci Ogrenciler { get; set; }
+        public virtual ICollection<Notlar> not { get; set; }
     }
 }
