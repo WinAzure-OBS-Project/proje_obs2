@@ -25,5 +25,7 @@ namespace proje_obs
 
         [StringLength(50)]
         public string Telefon { get; set; }
+
+        public virtual ICollection<Bolum> bolumler { get; set; }
     }
 }

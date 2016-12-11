@@ -23,6 +23,10 @@ namespace proje_obs
         [StringLength(50)]
         public string Fax { get; set; }
 
+        [ForeignKey(Fakulte_id)]
         public int? Fakulte_id { get; set; }
+
+        public virtual Fakulte fakulte { get; set; }
+        public virtual ICollection<Idari> idari { get; set; }
     }
 }
