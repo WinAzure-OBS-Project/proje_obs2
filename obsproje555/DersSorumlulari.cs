@@ -29,17 +29,17 @@ namespace proje_obs
 
         [StringLength(50)]
         public string OdaNo { get; set; }
+        
+        //public int BolumKodu { get; set; }
 
-        [StringLength(50)]
-        public string BolumKodu { get; set; }
-
-        [ForeignKey("BolumKodu")]
-        public virtual Bolum bolum { get; set; }
+        //[ForeignKey("BolumKodu")]
+        //public virtual Bolum bolum { get; set; }
 
         [StringLength(50)]
         public string Sifre { get; set; }
 
-        public virtual ICollection<AcilanDersler> AcilanDersler { get; set;}
-        
+        public bool DanismanMi { get; set; }
+
+        public virtual ICollection<AcilanDersler> AcilanDersler { get; set; }
     }
 }

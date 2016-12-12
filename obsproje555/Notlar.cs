@@ -13,8 +13,7 @@ namespace proje_obs
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int NotId { get; set; }
 
-        
-        public int? KayitId { get; set; }
+        public int KayitId { get; set; }
 
         public int? Vize { get; set; }
 
@@ -30,7 +29,7 @@ namespace proje_obs
         [StringLength(50)]
         public string OtomatikMi { get; set; }
 
-        [ForeignKey("KayitId")]
+        [ForeignKey("KayitId"), Required]
         public virtual Kayit kayit { get; set; }
     }
 }

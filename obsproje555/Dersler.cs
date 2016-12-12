@@ -34,7 +34,5 @@ namespace proje_obs
         public virtual Donemler donem { get; set; }
 
         public virtual ICollection<AcilanDersler> AcilanDersler { get; set; }
-
-        
     }
 }

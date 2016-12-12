@@ -15,23 +15,20 @@ namespace proje_obs
         [StringLength(50)]
         public string DersKodu { get; set; }
 
-        [ForeignKey("DersKodu")]
-        public virtual Dersler Ders { get; set; }
-
         [StringLength(50)]
         public string DersAdi { get; set; }
         
-        public int? AkademisyenId { get; set; }
+        public int AkademisyenId { get; set; }
 
         [ForeignKey("AkademisyenId")]
         public virtual DersSorumlulari DersSorumlusu { get; set; }
+
+        public virtual ICollection<Kayit> Kayitlar { get; set; }
 
         public int? YariYil { get; set; }
 
         public int? YilDers { get; set; }
 
         public bool OnaylandiMi { get; set; }
-
-        public virtual ICollection<Kayit> Kayitlar { get; set; } 
     }
 }

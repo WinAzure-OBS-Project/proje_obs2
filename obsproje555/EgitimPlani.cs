@@ -14,13 +14,15 @@ namespace proje_obs
         [StringLength(50)]
         public string BolumAdi { get; set; }
 
+        public int BolumKodu { get; set; }
+
         [StringLength(50)]
         public string Onay_tarihi { get; set; }
 
         [StringLength(50)]
         public string Donem { get; set; }
 
-        [ForeignKey("BolumAdi")]
+        [ForeignKey("BolumKodu")]
         public virtual Bolum bolumler { get; set; }
 
         [ForeignKey("Donem")]

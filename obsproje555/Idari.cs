@@ -32,13 +32,13 @@ namespace proje_obs
         [StringLength(50)]
         public string Adres { get; set; }
 
+
+        //public int BolumKodu { get; set; }
+
+        //[ForeignKey("BolumKodu")]
+        //public virtual Bolum bolum { get; set; }
+
         [StringLength(50)]
         public string Sifre { get; set; }
-
-        
-        public int? BolumId { get; set; }
-
-        [ForeignKey("BolumId")]
-        public virtual Bolum bolumler { get; set; }
     }
 }

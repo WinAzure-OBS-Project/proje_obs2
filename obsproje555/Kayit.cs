@@ -11,17 +11,22 @@ namespace proje_obs
     {
         public int KayitId { get; set; }
 
-        public int? ADId { get; set; }
-
-        public int? OgrenciNo { get; set; }
-
-        public bool OnaylandiMi { get; set; }
+        public int ADId { get; set; }
 
         [ForeignKey("ADId")]
         public virtual AcilanDersler AcilanDers { get; set; }
-        [ForeignKey("OgrenciNo")]
+
+        [ForeignKey("Ogrenci")]
+        public int? OgrenciNo { get; set; }
+
+        
         public virtual Ogrenci Ogrenci { get; set; }
 
-        public virtual ICollection<Notlar> notlar { get; set; }
+        public bool OnaylandiMi { get; set; }
+
+        public int NotId { get; set; }
+
+        [ForeignKey("NotId")]
+        public virtual Notlar not { get; set; }
     }
 }

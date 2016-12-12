@@ -90,10 +90,7 @@ namespace proje_obs
             modelBuilder.Entity<DersSorumlulari>()
                 .Property(e => e.OdaNo)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<DersSorumlulari>()
-                .Property(e => e.BolumKodu)
-                .IsUnicode(false);
+            
 
             modelBuilder.Entity<Donemler>()
                 .Property(e => e.Donem)

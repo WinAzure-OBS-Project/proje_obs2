@@ -11,6 +11,12 @@ namespace proje_obs.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //Deneme:
+            //ObsDbContext ctx = new ObsDbContext();
+            //var a1 = ctx.Notlar.FirstOrDefault(a => a.NotId == 5);
+            //var a2 = a1.kayit;
+            //var a3 = a2.Ogrenci;
+            //var a4 = a3.Ad;
             if (Session["Role"] != null)
             {
                 String role = Session["Role"].ToString();
