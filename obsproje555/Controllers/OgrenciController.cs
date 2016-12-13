@@ -148,18 +148,23 @@ namespace proje_obs.Controllers
                     secilebilecekDersler.Add(eklenicek);
                 }
             }
-
+            
             bool DersSecmeHaftasi= true;
-            //
+            if (Session["secilmis"] != null)
+            {
+                var yeni = (List < AcilanDersler > )Session["secilmis"];
+                foreach(var i in yeni)
+                {
+                    secilebilecekDersler.Remove(i);
+                }
+            }
             if(DersSecmeHaftasi)
             {
-                //
 
                 return View(secilebilecekDersler);//seçebileceği dersleri döndür
             }
             else
             {
-                //
                 return RedirectToAction("Index");
             }
         }
@@ -170,7 +175,10 @@ namespace proje_obs.Controllers
         public ActionResult DersSecme(int dersId)
         {
 
-            //session'a dersi ekle
+            ObsDbContext ctx = new ObsDbContext();
+            AcilanDersler eklenicek = ctx.AcilanDersler.FirstOrDefault(a => a.ADId == dersId);
+            var liste = (List<AcilanDersler>)Session["secilmis"];
+            liste.Add(eklenicek);
             return RedirectToAction("DersSecme");
         }
 

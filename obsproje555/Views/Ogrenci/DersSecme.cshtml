@@ -6,8 +6,12 @@
 
 <h2>DersSecme</h2>
 
-@foreach(var ders in Model)
+@foreach (var ders in Model)
 {
+    if (((List<AcilanDersler>)Session["secilmis"]).Contains(ders))
+    {
+        continue;
+    }
     using (Html.BeginForm("DersSecme", "Ogrenci"))
     {
         <div>@ders.DersAdi</div>
@@ -17,11 +21,16 @@
 }
 
 <h2>Seçilenler:</h2>
-@{ 
+@{
     List<AcilanDersler> SecilmisOlanlar = (List<AcilanDersler>)Session["secilmis"];
-    foreach(AcilanDersler secilmis in SecilmisOlanlar)
+    foreach (AcilanDersler secilmis in SecilmisOlanlar)
     {
-        <!--Bilgileri göster, ilerde çıkarma seçeneği eklenecek-->
+        using (Html.BeginForm("DersSecme", "Ogrenci"))
+        {
+            <div>@secilmis.DersAdi</div>
+            <input type="hidden" value="@secilmis.ADId" name="dersId" />
+            <input type="submit" value="ekle" />
+        }
     }
     using (Html.BeginForm("DersSecimKaydet", "Ogrenci"))
     {
