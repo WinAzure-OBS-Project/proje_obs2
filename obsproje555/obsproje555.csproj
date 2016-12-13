@@ -246,6 +246,12 @@
     <Content Include="Views\OgretimElemani\SinavSonuclariGir.cshtml" />
     <Content Include="Views\OgretimElemani\DersEklemeTaleplerimiListele.cshtml" />
     <Content Include="Views\OgretimElemani\BuSenekiDerslerimiGor.cshtml" />
+    <Content Include="Views\idari\OgrenciListele.cshtml" />
+    <Content Include="Views\idari\OgrenciEkle.cshtml" />
+    <Content Include="Views\idari\idariListele.cshtml" />
+    <Content Include="Views\idari\idariEkle.cshtml" />
+    <Content Include="Views\idari\DersSorumlusuListele.cshtml" />
+    <Content Include="Views\idari\DersSorumlusuEkle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

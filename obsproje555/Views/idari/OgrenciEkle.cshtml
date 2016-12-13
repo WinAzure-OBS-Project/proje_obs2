@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OgrenciEkle";
+}
+
+<h2>OgrenciEkle</h2>
+
+@using (Html.BeginForm("OgrenciEkle", "idari"))
+{
+    <span>OgrenciNo:</span><input type="text" /><br />
+    <span>Ad:</span><input type="text" /><br />
+    <span>Soyad:</span><input type="text" /><br />
+    <span>Cinsiyet:</span><input type="text" /><br />
+    <span>DogumTarihi:</span><input type="text" /><br />
+    <span>EPosta:</span><input type="text" /><br />
+    <span>Telefon:</span><input type="text" /><br />
+    <span>MezunOlunanOkulPuani:</span><input type="text" /><br />
+    <span>AktifKayitDonemi:</span><input type="text" /><br />
+    <span>DanismanId:</span><input type="text" /><br />
+    <span>Sifre:</span><input type="text" /><br />
+    <input type="submit" value="Ekle" />
+}
