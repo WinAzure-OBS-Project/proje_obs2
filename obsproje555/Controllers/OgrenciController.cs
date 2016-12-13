@@ -126,18 +126,30 @@ namespace proje_obs.Controllers
             ObsDbContext ctx = new ObsDbContext();
             List<AcilanDersler> secilebilecekDersler = null;
             List<Kayit> oncedenAlinmis_Kayit = null;
-            List<Notlar> kalinanDersler = null;
-            if(Session["secilmis"] == null)
+            List<int> gecilenDersler = null;
+            AcilanDersler eklenicek = null;
+            if (Session["secilmis"] == null)
             {
                 Session["secilmis"] = new List<AcilanDersler>();
             }
             int Id = Convert.ToInt32(User.Identity.Name);
             var o = ctx.Ogrenci.FirstOrDefault(a => a.OgrenciNo == Id);
-            secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil==int.Parse(o.AktifKayitDonemi.Split('.')[0]) && a.YilDers==2015 ).Select(a => a).ToList();
+            //secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil==int.Parse(o.AktifKayitDonemi.Split('.')[0]) && a.YilDers==2015 ).Select(a => a).ToList();
+            int yil = int.Parse(o.AktifKayitDonemi.Substring(0, 1));
+            secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil == yil  &&  a.YilDers==2014).Select(a => a).ToList();
             oncedenAlinmis_Kayit = ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo).Select(a => a).ToList();
-            List<int> liste= ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo).Select(a => a.KayitId).ToList();
-            kalinanDersler=ctx.Notlar.Where(a=>a.)
-            bool DersSecmeHaftasi= false;
+            gecilenDersler = ctx.Notlar.Where(a => a.kayit.OgrenciNo == o.OgrenciNo && a.YilNot>49).Select(a=>a.KayitId).ToList();
+            
+            foreach(var i in oncedenAlinmis_Kayit)
+            {
+                if(!gecilenDersler.Contains(i.KayitId))
+                {
+                    eklenicek = (AcilanDersler) ctx.AcilanDersler.Where(a => a.ADId == i.ADId).Select(a => a);
+                    secilebilecekDersler.Add(eklenicek);
+                }
+            }
+
+            bool DersSecmeHaftasi= true;
             //
             if(DersSecmeHaftasi)
             {
