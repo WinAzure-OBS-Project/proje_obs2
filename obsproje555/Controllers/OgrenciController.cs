@@ -144,7 +144,7 @@ namespace proje_obs.Controllers
             {
                 if(!gecilenDersler.Contains(i.KayitId))
                 {
-                    eklenicek = (AcilanDersler) ctx.AcilanDersler.Where(a => a.ADId == i.ADId).Select(a => a);
+                    eklenicek = (AcilanDersler) ctx.AcilanDersler.FirstOrDefault(a => a.ADId == i.ADId);
                     secilebilecekDersler.Add(eklenicek);
                 }
             }
