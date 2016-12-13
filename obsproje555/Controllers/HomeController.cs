@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,6 +31,44 @@ namespace proje_obs.Controllers
                 }
 
             }
+            return View();
+        }
+
+        //YÖNETİMSEL
+        public ActionResult AddPasswordsToDatabase()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            foreach (Idari i in ctx.Idari)
+            {
+                i.Sifre = Convert.ToString(i.Id);
+            }
+            foreach (Ogrenci o in ctx.Ogrenci)
+            {
+                o.Sifre = Convert.ToString(o.OgrenciNo);
+            }
+            foreach (DersSorumlulari o in ctx.DersSorumlulari)
+            {
+                o.Sifre = Convert.ToString(o.AkademisyenID);
+            }
+            ctx.SaveChanges();
+
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+
+            Console.WriteLine(roles);
+
+            return RedirectToAction("Index");
+        }
+
+        //YÖNETİMSEL
+        public ActionResult OgrencisiOlmayanKayitlariSil()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Notlar.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)).Select(kayit => kayit.not));
+            ctx.Kayit.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)));
+
             return View();
         }
     }
