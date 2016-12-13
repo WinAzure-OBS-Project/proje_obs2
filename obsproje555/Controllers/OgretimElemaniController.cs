@@ -112,6 +112,9 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult BuSenekiDerslerimiGor()
         {
+            ObsDbContext ctx = new ObsDbContext();
+            int Id = Convert.ToInt32(User.Identity.Name);
+            var o = ctx.DersSorumlulari.FirstOrDefault(a => a.AkademisyenID == Id);
             List<AcilanDersler> dersler = null;
             //
             return View(dersler);
@@ -136,7 +139,7 @@ namespace proje_obs.Controllers
             //
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult SinavSonucunuKaydet(int kayitId /*değişikliğin yapıldığı kayıt parametreleri*/)
         {

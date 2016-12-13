@@ -125,11 +125,18 @@ namespace proje_obs.Controllers
         {
             ObsDbContext ctx = new ObsDbContext();
             List<AcilanDersler> secilebilecekDersler = null;
+            List<Kayit> oncedenAlinmis_Kayit = null;
+            List<Notlar> kalinanDersler = null;
             if(Session["secilmis"] == null)
             {
                 Session["secilmis"] = new List<AcilanDersler>();
             }
-            
+            int Id = Convert.ToInt32(User.Identity.Name);
+            var o = ctx.Ogrenci.FirstOrDefault(a => a.OgrenciNo == Id);
+            secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil==int.Parse(o.AktifKayitDonemi.Split('.')[0]) && a.YilDers==2015 ).Select(a => a).ToList();
+            oncedenAlinmis_Kayit = ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo).Select(a => a).ToList();
+            List<int> liste= ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo).Select(a => a.KayitId).ToList();
+            kalinanDersler=ctx.Notlar.Where(a=>a.)
             bool DersSecmeHaftasi= false;
             //
             if(DersSecmeHaftasi)
