@@ -127,6 +127,7 @@ namespace proje_obs.Controllers
             List<AcilanDersler> secilebilecekDersler = null;
             List<Kayit> oncedenAlinmis_Kayit = null;
             List<int> gecilenDersler = null;
+            List<AcilanDersler> cikarilacaklar = new List<AcilanDersler>();
             AcilanDersler eklenicek = null;
             if (Session["secilmis"] == null)
             {
@@ -155,8 +156,19 @@ namespace proje_obs.Controllers
                 var yeni = (List < AcilanDersler > )Session["secilmis"];
                 foreach(var i in yeni)
                 {
-                    secilebilecekDersler.Remove(i);
+                    foreach(var j in secilebilecekDersler)
+                    {
+                        if (i.DersKodu == j.DersKodu)
+                        {
+                            cikarilacaklar.Add(j);
+                            
+                        }
+                    }
                 }
+            }
+            foreach(var j in cikarilacaklar)
+            {
+                secilebilecekDersler.Remove(j);
             }
             if(DersSecmeHaftasi)
             {
@@ -179,6 +191,7 @@ namespace proje_obs.Controllers
             AcilanDersler eklenicek = ctx.AcilanDersler.FirstOrDefault(a => a.ADId == dersId);
             var liste = (List<AcilanDersler>)Session["secilmis"];
             liste.Add(eklenicek);
+            Session["secilmis"] = liste;
             return RedirectToAction("DersSecme");
         }
 
@@ -187,15 +200,49 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult DersSecimKaydet()
         {
+            
+            ObsDbContext ctx = new ObsDbContext();
+            int Id = Convert.ToInt32(User.Identity.Name);
+            var o = ctx.Ogrenci.FirstOrDefault(a => a.OgrenciNo == Id);
             bool krediDurumuUygunMu = false;
-            //kredi durumunu kontrol et
-            //
+            List<AcilanDersler> secilmis = (List < AcilanDersler > )Session["secilmis"];
+            List<Kayit> onaylanmamisSilinecekKayitlar = null;
+            Kayit k=null;
+            int sum=0;
+            Dersler d=null;
+            foreach(var i in secilmis)
+            {
+                d = ctx.Dersler.FirstOrDefault(a => a.DersKodu == i.DersKodu);
+                if(d.Kredi.HasValue)
+                {
+                    sum = sum + d.Kredi;
+
+                }
+            }
+            if (sum <= 36) krediDurumuUygunMu = true;
             if(krediDurumuUygunMu)
             {
                 //session'dan dbye kaydet
                 //
+                onaylanmamisSilinecekKayitlar = ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo && a.OnaylandiMi == false).ToList();
+                foreach(var i in onaylanmamisSilinecekKayitlar)
+                {
+                    ctx.Kayit.Remove(i);
+                }
+                foreach(var i in secilmis)
+                {
+                    k.ADId = i.ADId;
+                    k.OgrenciNo = o.OgrenciNo;
+                    k.OnaylandiMi = false;
+                    k.NotId = 0;
+                    ctx.Kayit.Add(k);
+                }
+                ctx.SaveChanges();
+                ctx.Dispose();
+                Session["secilmis"] = null;
                 return RedirectToAction("Index");
             }
+            ctx.Dispose();
             return RedirectToAction("Index");//hata raporu döndür, tempdata
         }
 
