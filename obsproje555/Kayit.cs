@@ -27,6 +27,6 @@ namespace proje_obs
         public int NotId { get; set; }
 
         [ForeignKey("NotId")]
-        public virtual Notlar not { get; set; }
+        public Notlar not { get; set; }
     }
 }

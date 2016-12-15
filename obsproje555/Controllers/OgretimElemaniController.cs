@@ -46,6 +46,13 @@ namespace proje_obs.Controllers
         }
 
         [HttpGet]
+        public ActionResult DersSecimOnaylama()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult DersSecmeTalepleriniGor()
         {
             Dictionary<Ogrenci, List<Kayit>> dersSecmeTalepleri = null;
@@ -56,10 +63,9 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecmeTalebiniIncele(int ogrenciId)
         {
-            ViewBag.ogrenci = null; //doldur
-            List<Kayit> kayitlar = null; //doldur
+            Tuple<Ogrenci, List<Kayit>> talep = null; //doldur
             //
-            return View(kayitlar);
+            return View(talep);
         }
 
         [HttpPost]
@@ -133,17 +139,14 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult SinavSonuclariGir(int dersId)
         {
-            ViewBag.kayitlar = null;
-            ViewBag.notlar = null;
-            ViewBag.ogrenciler = null;
-            //
-            return View();
+            List<Ogrenci> ogrenciler = null; //eager loading, öğrenciler, kayıtları ve notlarını çek include ile
+            
+            return View(ogrenciler);
         }
         
         [HttpPost]
         public ActionResult SinavSonucunuKaydet(int kayitId /*değişikliğin yapıldığı kayıt parametreleri*/)
         {
-            
             //
             return RedirectToAction("SinavSonuclariGir");
         }

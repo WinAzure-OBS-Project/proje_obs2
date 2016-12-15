@@ -45,6 +45,6 @@ namespace proje_obs
         public string Sifre { get; set; }
 
 
-        public virtual ICollection<Kayit> kayitlar { get; set; }
+        public ICollection<Kayit> kayitlar { get; set; }
     }
 }

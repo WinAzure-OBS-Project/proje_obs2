@@ -180,6 +180,14 @@
     </Compile>
     <Compile Include="Idari.cs" />
     <Compile Include="Kayit.cs" />
+    <Compile Include="Migrations\201612151221063_first.cs" />
+    <Compile Include="Migrations\201612151221063_first.Designer.cs">
+      <DependentUpon>201612151221063_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151225198_second.cs" />
+    <Compile Include="Migrations\201612151225198_second.Designer.cs">
+      <DependentUpon>201612151225198_second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Notlar.cs" />
     <Compile Include="ObsDbContext.cs" />
@@ -263,6 +271,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612151221063_first.resx">
+      <DependentUpon>201612151221063_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151225198_second.resx">
+      <DependentUpon>201612151225198_second.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

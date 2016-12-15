@@ -1,4 +1,4 @@
-namespace obs_proje.Migrations
+namespace proje_obs.Migrations
 {
     using System;
     using System.Data.Entity;
