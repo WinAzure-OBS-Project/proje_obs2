@@ -215,7 +215,7 @@ namespace proje_obs.Controllers
                 d = ctx.Dersler.FirstOrDefault(a => a.DersKodu == i.DersKodu);
                 if(d.Kredi.HasValue)
                 {
-                    sum = sum + d.Kredi;
+                    sum = sum + d.Kredi.Value;
 
                 }
             }
@@ -249,22 +249,20 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult TranskriptGor()
         {
-            //db'den öğrencinin id'si ile eşleşenleri bul
-            ViewBag.acilanDersler = null;//
-            ViewBag.kayitlar = null;//
-            ViewBag.notlar = null;//
+            //öğrenciyi, kayıtları ve notları db'den eager loading yöntemi ile çek. home index'te örnek var.
+            Ogrenci ogrenci = null;
             //
-            return View();
+            return View(ogrenci);
         }
 
         [HttpGet]
         public ActionResult SinavSonuclarimiGor(int yil)
         {
-            //db'den çek, öğrencinin o yılki ders ve sonuçları dictionary'e at
-            Dictionary<AcilanDersler, Notlar> sonuclar = null;
+            //db'den çek, öğrenciyi çek, yıl bilgisi ile tuple'a ata
+            Ogrenci ogrenci = null;
+            Tuple<int, Ogrenci> ogrenci_yil = null;
             //
-            ViewBag.sonuclar = sonuclar;
-            return View();
+            return View(ogrenci_yil);
         }
 
     }
