@@ -44,13 +44,7 @@ namespace proje_obs.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
-
-        [HttpGet]
-        public ActionResult DersSecimOnaylama()
-        {
-
-            return View();
-        }
+        
 
         [HttpGet]
         public ActionResult DersSecmeTalepleriniGor()
@@ -79,11 +73,12 @@ namespace proje_obs.Controllers
         public ActionResult DersEklemeTalebi()
         {
             bool DersEklemeHaftasi = false;
+            List<Dersler> dersler = null;
             //
             if(DersEklemeHaftasi)
             {
                 //
-                return View();
+                return View(dersler);
             }
             else
             {
@@ -95,6 +90,7 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersEklemeTaleplerimiListele()
         {
+            //hocanın taleplerinden, henüz onaylanmamışları getir
             List<AcilanDersler> taleplerim = null;
             //
             return View(taleplerim);
@@ -109,10 +105,18 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult DersEklemeTalebi(int asdf/*buraya ders parametreleri gelecek*/)
+        public ActionResult DersEklemeTalebi(String DersKodu, String DersAdi, int YilDers, int Yariyil)
         {
             //
-            return View();
+            return RedirectToAction("DersEklemeTaleplerimiListele");
+        }
+
+        [HttpGet]
+        public ActionResult DersiAlanOgrenciler(int acilanDersId)
+        {
+            List<Ogrenci> ogrenciler = null;
+            //bu yılkiler
+            return View(ogrenciler);
         }
 
         [HttpGet]

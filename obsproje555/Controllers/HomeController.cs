@@ -74,7 +74,34 @@ namespace proje_obs.Controllers
             ObsDbContext ctx = new ObsDbContext();
             ctx.Notlar.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)).Select(kayit => kayit.not));
             ctx.Kayit.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)));
+            ctx.SaveChanges();
+            return View();
+        }
 
+        //YÖNETİMSEL
+        public ActionResult DikeyGecisleriSil()//xd
+        {
+            //ders yılı 1900 olan öğrenciler ve tüm kayıtlarını sil
+            ObsDbContext ctx = new ObsDbContext();
+            List<AcilanDersler> SorunluAcilanDersler = ctx.AcilanDersler.Where(ad => ad.YilDers == 1900).ToList();
+            List<Ogrenci> SilinecekOgrenciler = new List<Ogrenci>();
+            foreach(AcilanDersler ad in SorunluAcilanDersler)
+            {
+                foreach(Kayit k in ad.Kayitlar)
+                {
+                    SilinecekOgrenciler.AddRange(ctx.Ogrenci.Where(ogrenci => ogrenci.kayitlar.Contains(k)));
+                }
+            }
+            foreach(Ogrenci ogrenci in SilinecekOgrenciler)
+            {
+                foreach(Kayit k in ogrenci.kayitlar)
+                {
+                    ctx.Notlar.Remove(k.not);
+                }
+                ctx.Kayit.RemoveRange(ogrenci.kayitlar);
+            }
+            ctx.Ogrenci.RemoveRange(SilinecekOgrenciler);
+            ctx.SaveChanges();
             return View();
         }
     }

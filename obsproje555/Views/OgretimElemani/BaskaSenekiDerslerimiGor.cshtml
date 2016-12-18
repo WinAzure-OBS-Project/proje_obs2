@@ -7,7 +7,13 @@
 
 <h2>BaskaSenekiDerslerimiGor</h2>
 
-@foreach(AcilanDersler acilanDers in Model)
-{
-    <!--Ders bilgileri, kaç kişi alıyor vb.. viewbagden gelir artık. belki dersi alan öğrencilerin listesi-->
-}
+<table>
+    @foreach (AcilanDersler acilanDers in Model)
+    {
+        <tr>
+            <td>@acilanDers.ADId</td>
+            <td>@acilanDers.DersAdi</td>
+        </tr>
+        <!--Ders bilgileri, kaç kişi alıyor vb.. viewbagden gelir artık. belki dersi alan öğrencilerin listesi-->
+    }
+</table>

@@ -1,4 +1,5 @@
-﻿
+﻿@using proje_obs
+@model List<Dersler>
 @{
     ViewBag.Title = "DersEklemeTalebi";
 }
@@ -7,9 +8,18 @@
 
 @using (Html.BeginForm("DersEklemeTalebi", "OgretimElemani"))
 {
+
+    <select name="DersKodu">
+        @foreach(Dersler ders in Model)
+        {
+            <option value="@ders.DersKodu">@ders.DersAdi</option>
+        }
+        <option></option>
+    </select><br />
+
     <span>Ders adı:</span><input type="text" name="DersAdı"/><br />
-    <span>Ders kodu:</span><input type="text" name="DersKodu"/><br />
-    <span>Yarı yıl:</span><input type="text" name="Yariyil"/><br />
+    <span>Yarıyıl:</span><input type="text" name="Yariyil"/><br />
+    <span>Ders yılı:</span><input type="text" name="YilDers"/>
     <!--Başka bilgiler de olabilir, tasarım düzenlenecek-->
     <input type="submit" value="gönder"/>
 }

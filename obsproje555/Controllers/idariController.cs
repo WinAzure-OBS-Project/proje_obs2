@@ -161,7 +161,8 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult DersSorumlusuEkle(int id/*,ilgili parametreler*/)
+        public ActionResult DersSorumlusuEkle(int id, string ad, string soyad, string unvan, string telefon,
+            string mail, string odaNo, string sifre, string danismanMi)
         {
             return RedirectToAction("DersSorumlusuListele");
         }
@@ -179,8 +180,11 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult idariEkle(int id/*parametreler bi sürü*/)
+        public ActionResult idariEkle(int id, string unvan, string ad, string soyad,
+            string mail, string tel, string fax, string adres, string sifre)
         {
+
+
             return RedirectToAction("idariListele");
         }
 

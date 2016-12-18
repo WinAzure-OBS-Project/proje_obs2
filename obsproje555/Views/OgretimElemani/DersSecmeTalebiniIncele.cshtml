@@ -1,5 +1,5 @@
 ﻿@using proje_obs
-@model List<Kayit>
+@model Tuple<Ogrenci,List<Kayit>>
 @{
     ViewBag.Title = "DersSecmeTalebiniIncele";
 }
@@ -7,12 +7,12 @@
 <h2>DersSecmeTalebiniIncele</h2>
 
 @{
-    Ogrenci o = (Ogrenci)ViewBag.ogrenci;
+    Ogrenci o = Model.Item1;
 
     using (Html.BeginForm("DersSecmeTalebiniOnayla", "OgretimElemani"))
     {
         <span>Ogrenci adı: @o.Ad</span><br />
-        foreach (var kayit in Model)
+        foreach (var kayit in Model.Item2)
         {
             <!--Kayıt bilgilerini göster bilmemne--><br />
         }
