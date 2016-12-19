@@ -9,9 +9,9 @@ namespace proje_obs
     {
         public String Id { get; set; }
         public String Yıl { get; set; }
-        public DateTime dersEklemeBaslangic { get; set; }
+        public DateTime dersSecmeBaslangic { get; set; }
         public DateTime dersAcmaBaslangic { get; set; }
-        public DateTime dersEklemeBitis { get; set; }
+        public DateTime dersSecmeBitis { get; set; }
         public DateTime dersAcmaBitis { get; set; }
     }
 }

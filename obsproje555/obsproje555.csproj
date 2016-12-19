@@ -245,8 +245,6 @@
     <Content Include="Views\OgretimElemani\Login.cshtml" />
     <Content Include="Views\OgretimElemani\UploadProfilePicture.cshtml" />
     <Content Include="Views\OgretimElemani\DersSecmeTalepleriniGor.cshtml" />
-    <Content Include="Views\idari\DersSecmeTarihiBelirle.cshtml" />
-    <Content Include="Views\idari\DersEklemeTarihiBelirle.cshtml" />
     <Content Include="Views\idari\DersEklemeTalepleriListele.cshtml" />
     <Content Include="Views\Ogrenci\DersSecme.cshtml" />
     <Content Include="Views\Ogrenci\SinavSonuclarimiGor.cshtml" />
@@ -263,6 +261,7 @@
     <Content Include="Views\idari\idariEkle.cshtml" />
     <Content Include="Views\idari\DersSorumlusuListele.cshtml" />
     <Content Include="Views\idari\DersSorumlusuEkle.cshtml" />
+    <Content Include="Views\idari\TarihleriBelirle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

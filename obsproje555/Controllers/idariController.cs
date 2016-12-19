@@ -71,45 +71,63 @@ namespace proje_obs.Controllers
         }
 
         [HttpGet]
-        public ActionResult DersSecmeTarihiBelirle()
+        public ActionResult TarihleriListele()//bu ekranda silip ekleme yapacak
         {
-            //
-            return View();
+            List<DersTarihler> tarihler = null;
+            ObsDbContext ctx = new ObsDbContext();
+            tarihler = ctx.DersTarihler.ToList();
+            ctx.Dispose();
+
+            return View(tarihler);
         }
 
         [HttpPost]
-        public ActionResult DersSecmeTarihiBelirle(String baslangic, String bitis)
+        public ActionResult TarihEkle(String dersAcmaBaslangic, String dersAcmaBitis, String dersSecmeBaslangic, String dersSecmeBitis)
         {
             //
-            return View();
-        }
+            ObsDbContext ctx = new ObsDbContext();
+            DersTarihler dt = new DersTarihler();
+            dt.dersAcmaBaslangic = DateTime.Parse(dersAcmaBaslangic);
+            dt.dersAcmaBitis = DateTime.Parse(dersAcmaBitis);
+            dt.dersSecmeBaslangic = DateTime.Parse(dersSecmeBaslangic);
+            dt.dersSecmeBitis = DateTime.Parse(dersSecmeBitis);
+            ctx.DersTarihler.Add(dt);
+            ctx.SaveChanges();
+            ctx.Dispose();
 
-        [HttpGet]
-        public ActionResult DersEklemeTarihiBelirle()
-        {
-            //
-            return View();
+            return RedirectToAction("TarihleriListele");
         }
 
         [HttpPost]
-        public ActionResult DersEklemeTarihiBelirle(String baslangic, String bitis)
+        public ActionResult TarihiSil(int id)
         {
-            //
-            return View();
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.DersTarihler.Remove(ctx.DersTarihler.First(dt => dt.Id == id.ToString()));
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("TarihleriListele");
         }
 
         [HttpGet]
         public ActionResult DersEklemeTalepleriListele()
         {
             List<AcilanDersler> eklemeTalepleri = null;
-            //
+            ObsDbContext ctx = new ObsDbContext();
+            eklemeTalepleri = ctx.AcilanDersler.Where(acilanDers => acilanDers.OnaylandiMi == false).ToList();
+            ctx.Dispose();
+
             return View(eklemeTalepleri);
         }
 
         [HttpPost]
         public ActionResult DersEklemeTalebiniOnayla(int acilanDersId)
         {
-            //
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.AcilanDersler.First(acilanDers => acilanDers.ADId == acilanDersId).OnaylandiMi = true;
+            ctx.SaveChanges();
+            ctx.Dispose();
+
             return RedirectToAction("DersEklemeTalepleriListele");
         }
 
@@ -119,7 +137,19 @@ namespace proje_obs.Controllers
             ObsDbContext ctx = new ObsDbContext();
             List<Ogrenci> ogrenciler = ctx.Ogrenci.ToList();
             ctx.Dispose();
+
             return View(ogrenciler);
+        }
+
+        [HttpPost]
+        public ActionResult OgrenciyeDanismanEkle(int ogrenciId, int danismanId)
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Ogrenci.First(ogrenci => ogrenci.OgrenciNo == ogrenciId).DanismanId = danismanId;
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("OgrenciListele");
         }
 
         [HttpGet]
@@ -144,14 +174,20 @@ namespace proje_obs.Controllers
             o.Sifre = Sifre;
             ObsDbContext ctx = new ObsDbContext();
             ctx.Ogrenci.Add(o);
+            ctx.SaveChanges();
             ctx.Dispose();
             return RedirectToAction("OgrenciListele");
         }
 
+        
         [HttpGet]
         public ActionResult DersSorumlusuListele()
         {
-            return View();
+            ObsDbContext ctx = new ObsDbContext();
+            List<DersSorumlulari> dersSorumlulari = ctx.DersSorumlulari.ToList();
+            ctx.Dispose();
+
+            return View(dersSorumlulari);
         }
 
         [HttpGet]
@@ -160,22 +196,66 @@ namespace proje_obs.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult DersSorumlusuSil(int hocaId)
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.DersSorumlulari.Remove(ctx.DersSorumlulari.First(hoca=>hoca.AkademisyenID == hocaId));
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("DersSorumlusuListele");
+        }
+
         [HttpPost]
         public ActionResult DersSorumlusuEkle(int id, string ad, string soyad, string unvan, string telefon,
             string mail, string odaNo, string sifre, string danismanMi)
         {
+            DersSorumlulari ds = new DersSorumlulari();
+            ds.AkademisyenID = id;
+            ds.Adi = ad;
+            ds.Soyadi = soyad;
+            ds.Unvani = unvan;
+            ds.Telefonu = telefon;
+            ds.Maili = mail;
+            ds.OdaNo = odaNo;
+            ds.Sifre = sifre;
+            ds.DanismanMi = Convert.ToBoolean(danismanMi);
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.DersSorumlulari.Add(ds);
+            ctx.SaveChanges();
+            ctx.Dispose();
+
             return RedirectToAction("DersSorumlusuListele");
         }
+
+        [HttpPost]
+        public ActionResult DanismanlikDurumuDuzenle(int hocaId, int durum)//1=true,0=false
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.DersSorumlulari.First(ds => ds.AkademisyenID == hocaId).DanismanMi = Convert.ToBoolean(durum);
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("DersSorumlusuListele");
+        }
+        
 
         [HttpGet]
         public ActionResult idariListele()
         {
-            return View();
+            ObsDbContext ctx = new ObsDbContext();
+            List<Idari> idariler = ctx.Idari.ToList();
+            ctx.Dispose();
+
+            return View(idariler);
         }
 
         [HttpGet]
         public ActionResult idariEkle()
         {
+
+
             return View();
         }
 
@@ -183,7 +263,20 @@ namespace proje_obs.Controllers
         public ActionResult idariEkle(int id, string unvan, string ad, string soyad,
             string mail, string tel, string fax, string adres, string sifre)
         {
-
+            Idari idari = new Idari();
+            idari.Id = id;
+            idari.Unvan = unvan;
+            idari.Adi = ad;
+            idari.Soyadi = soyad;
+            idari.Mail = mail;
+            idari.Tel = tel;
+            idari.Fax = fax;
+            idari.Adres = adres;
+            idari.Sifre = sifre;
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Idari.Add(idari);
+            ctx.SaveChanges();
+            ctx.Dispose();
 
             return RedirectToAction("idariListele");
         }

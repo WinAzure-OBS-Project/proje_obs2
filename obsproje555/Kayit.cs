@@ -14,7 +14,7 @@ namespace proje_obs
         public int ADId { get; set; }
 
         [ForeignKey("ADId")]
-        public virtual AcilanDersler AcilanDers { get; set; }
+        public AcilanDersler AcilanDers { get; set; }
 
         [ForeignKey("Ogrenci")]
         public int? OgrenciNo { get; set; }
