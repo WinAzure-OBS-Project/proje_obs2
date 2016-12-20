@@ -1,7 +1,21 @@
-﻿
+﻿@using proje_obs
+@model List<DersSorumlulari>
+
 @{
     ViewBag.Title = "DersSorumlusuListele";
 }
 
 <h2>DersSorumlusuListele</h2>
 
+<table>
+    @foreach (DersSorumlulari ds in Model)
+    {
+        <tr>
+            <td>@ds.Adi @ds.Soyadi</td>
+            <td>@ds.AkademisyenID</td>
+            <td>@ds.Unvani</td>
+
+        </tr>
+    }
+</table>
+<a href="/idari/DersSorumlusuEkle">DersSorumlusuEkle ekle</a>
