@@ -212,19 +212,19 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult DersSorumlusuEkle(int id, string ad, string soyad, string unvan, string telefon,
-            string mail, string odaNo, string sifre, string danismanMi)
+        public ActionResult DersSorumlusuEkle(int AkademisyenID, string Adi, string Soyadi, string Unvani, string Telefonu,
+            string Maili, string OdaNo, string Sifre, string DanismanMi)
         {
             DersSorumlulari ds = new DersSorumlulari();
-            ds.AkademisyenID = id;
-            ds.Adi = ad;
-            ds.Soyadi = soyad;
-            ds.Unvani = unvan;
-            ds.Telefonu = telefon;
-            ds.Maili = mail;
-            ds.OdaNo = odaNo;
-            ds.Sifre = sifre;
-            ds.DanismanMi = Convert.ToBoolean(danismanMi);
+            ds.AkademisyenID = AkademisyenID;
+            ds.Adi = Adi;
+            ds.Soyadi = Soyadi;
+            ds.Unvani = Unvani;
+            ds.Telefonu = Telefonu;
+            ds.Maili = Maili;
+            ds.OdaNo = OdaNo;
+            ds.Sifre = Sifre;
+            ds.DanismanMi = Convert.ToBoolean(DanismanMi);
             ObsDbContext ctx = new ObsDbContext();
             ctx.DersSorumlulari.Add(ds);
             ctx.SaveChanges();
