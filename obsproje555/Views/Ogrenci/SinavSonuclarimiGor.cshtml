@@ -1,14 +1,52 @@
 ﻿@using proje_obs
-
+@model Ogrenci
 @{
     ViewBag.Title = "SinavSonuclarimiGor";
 }
 
+
 <h2>SinavSonuclarimiGor</h2>
+
 @{
-    Dictionary<AcilanDersler, Notlar> sonuclar = (Dictionary<AcilanDersler, Notlar>)ViewBag.ogrencininSonuclari;
-}
-@foreach(KeyValuePair<AcilanDersler, Notlar> pair in sonuclar)
-{
-    <!--Bilgiler falan filan-->
+    Ogrenci o = Model;
+    HashSet<Kayit> kayitlar = (HashSet<Kayit>)o.kayitlar;
+    int y = int.Parse(o.AktifKayitDonemi.Substring(0, 1));
+    var kayitlar1 = kayitlar.Where(a => a.AcilanDers.YariYil == y || a.AcilanDers.YariYil == y - 1).ToList();
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    foreach (var k in kayitlar1)
+    {
+
+        using (Html.BeginForm("SinavSonuclarimiGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
 }
