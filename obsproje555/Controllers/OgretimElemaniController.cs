@@ -124,7 +124,7 @@ namespace proje_obs.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult TalebimiSil(int acilanDersId)
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -192,7 +192,10 @@ namespace proje_obs.Controllers
         public ActionResult BaskaSenekiDerslerimiGor(int yil)
         {
             List<AcilanDersler> dersler = null;
-            //
+            ObsDbContext ctx = new ObsDbContext();
+            dersler = ctx.AcilanDersler.Where(acilanDers => acilanDers.YilDers == yil).ToList();
+            ctx.Dispose();
+
             return View(dersler);
         }
 

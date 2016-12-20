@@ -1,7 +1,17 @@
-﻿
+﻿@using proje_obs
+@model List<AcilanDersler>
+
 @{
     ViewBag.Title = "DersEklemeTaleplerimiListele";
 }
 
 <h2>DersEklemeTaleplerimiListele</h2>
 
+<table>
+    @foreach (AcilanDersler acilanDers in Model)
+    {
+    <tr>
+        <td>@acilanDers.ADId</td><td>@acilanDers.DersAdi</td><td><a href="/OgretimElemani/TalebimiSil/@acilanDers.ADId">Talebimi sil</a></td>
+    </tr>
+    }
+</table>
