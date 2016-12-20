@@ -4,51 +4,353 @@
     ViewBag.Title = "TranskriptGor";
 }
 
+<script type="text/javascript">
+// göster/gizle
+function showMe(blockId) {
+     if ( document.getElementById(blockId).style.display == 'none' ) {
+          document.getElementById(blockId).style.display = ''; }
+else if ( document.getElementById(blockId).style.display == '' ) {
+          document.getElementById(blockId).style.display = 'none'; }
+}
+</script>
+
 <h2>TranskriptGor</h2>
 
 @{
-    /*List<AcilanDersler> acilanDersler = (List<AcilanDersler>)ViewBag.acilanDersler;
-    List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
-    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;*/
+    Ogrenci o = Model;
+    HashSet<Kayit> kayitlar = (HashSet<Kayit>)o.kayitlar;
+    var kayitlar1 = kayitlar.Where(a => a.AcilanDers.YariYil == 1).ToList();
+    var kayitlar2 = kayitlar.Where(a => a.AcilanDers.YariYil == 2).ToList();
+    var kayitlar3 = kayitlar.Where(a => a.AcilanDers.YariYil == 3).ToList();
+    var kayitlar4 = kayitlar.Where(a => a.AcilanDers.YariYil == 4).ToList();
+    var kayitlar5 = kayitlar.Where(a => a.AcilanDers.YariYil == 5).ToList();
+    var kayitlar6 = kayitlar.Where(a => a.AcilanDers.YariYil == 6).ToList();
+    var kayitlar7 = kayitlar.Where(a => a.AcilanDers.YariYil == 7).ToList();
+    var kayitlar8 = kayitlar.Where(a => a.AcilanDers.YariYil == 8).ToList();
+    kayitlar.OrderBy(a => a.AcilanDers.YariYil);
 
-    /*acilanDersler.OrderBy(acilanDers => acilanDers.YariYil);
-
-    foreach(var acilanDers in acilanDersler)
+    <input type="button" value="Göster/Gizle - 1.Yarıyıl" onclick="showMe('y1');" />
+    <input type="button" value="Göster/Gizle - 2.Yarıyıl" onclick="showMe('y2');" />
+    <input type="button" value="Göster/Gizle - 3.Yarıyıl" onclick="showMe('y3');" />
+    <input type="button" value="Göster/Gizle - 4.Yarıyıl" onclick="showMe('y4');" />
+    <input type="button" value="Göster/Gizle - 5.Yarıyıl" onclick="showMe('y5');" />
+    <input type="button" value="Göster/Gizle - 6.Yarıyıl" onclick="showMe('y6');" />
+    <input type="button" value="Göster/Gizle - 7.Yarıyıl" onclick="showMe('y7');" />
+    <input type="button" value="Göster/Gizle - 8.Yarıyıl" onclick="showMe('y8');" />
+    <div style="display:none" id="y1"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar1)
     {
 
-        <!--bilgiler gösterilcek htmlde, mvclik iş yok. ama lojik kısım, db'de OR yapısı tam olmadığından karışık gelebilir-->
-        <!--Yarıyıllara göre gruplanacak-->
-    }*/
-    Ogrenci o = Model;
-    //List<Kayit> kayitlar = (List<Kayit>)o.kayitlar;
-    //List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
-    HashSet<Kayit> kayitlar = (HashSet<Kayit>)o.kayitlar;
-    kayitlar.OrderBy(a => a.AcilanDers.YariYil);
-    <table>
-        @foreach (var k in kayitlar)
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
         {
-
-            using (Html.BeginForm("TranskriptGor", "Ogrenci"))
-            {
-                <tr>
-                    <td>
-                        <div>@k.not.kayit.OgrenciNo</div>
-                    </td>
-                    <td>
-                        <div>@k.not.kayit.AcilanDers.DersAdi</div>
-                    </td>
-                    <td>
-                        <div>@k.not.YilNot</div>
-                    </td>
-                    <td>
-                        <div>@k.not.HarfNotu</div>
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
         }
-    </table>
+    }
+</table></div>
+    <div style="display:none" id="y2"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar2)
+    {
 
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y3"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar3)
+    {
 
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y4"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar4)
+    {
+
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y5"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar5)
+    {
+
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y6"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar6)
+    {
+
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y7"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar7)
+    {
+
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+    <div style="display:none" id="y8"><table style="border:1px">
+    <thead>
+        <tr>
+            <td>Kayıt Id</td>
+            <td>Not Id</td>
+            <td>Ogrenci No</td>
+            <td>Ders Adı</td>
+            <td>Yıl Not</td>
+            <td>Harf Notu</td>
+        </tr>
+    </thead>
+    @foreach (var k in kayitlar8)
+    {
+
+        using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+        {
+            <tr>
+                <td>
+                    <div>@k.not.kayit.KayitId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.NotId</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.OgrenciNo</div>
+                </td>
+                <td>
+                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                </td>
+                <td>
+                    <div>@k.not.YilNot</div>
+                </td>
+                <td>
+                    <div>@k.not.HarfNotu</div>
+                </td>
+            </tr>
+        }
+    }
+</table></div>
+
+    
 
 
 }
