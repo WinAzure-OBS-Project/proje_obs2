@@ -104,5 +104,31 @@ namespace proje_obs.Controllers
             ctx.SaveChanges();
             return View();
         }
+
+        //YÖNETİMSEL
+        [HttpGet]
+        public ActionResult KopyaKayitlariSil()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            List<Kayit> Kayitlar = ctx.Kayit.Include("not").ToList();
+            List<Kayit> SilinecekKayitlar = new List<Kayit>();
+            foreach(Kayit k in Kayitlar)
+            {
+                if(SilinecekKayitlar.Any(silinecekKayit => silinecekKayit.KayitId == k.KayitId))
+                {
+                    continue;
+                }
+                SilinecekKayitlar.AddRange(Kayitlar.Where(kayit => kayit.ADId == k.ADId && kayit.OgrenciNo == k.OgrenciNo && kayit.KayitId != k.KayitId));
+            }
+            foreach(Kayit k in SilinecekKayitlar)
+            {
+                ctx.Notlar.Remove(k.not);
+                ctx.Kayit.Remove(k);
+            }
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("Index");
+        }
     }
 }
