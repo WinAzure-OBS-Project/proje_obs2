@@ -263,10 +263,13 @@ namespace proje_obs.Controllers
         public ActionResult SinavSonuclarimiGor(int yil)
         {
             //db'den çek, öğrenciyi çek, yıl bilgisi ile tuple'a ata
-            Ogrenci ogrenci = null;
-            Tuple<int, Ogrenci> ogrenci_yil = null;
-            //
-            return View(ogrenci_yil);
+            ObsDbContext ctx = new ObsDbContext();
+            int Id = Convert.ToInt32(User.Identity.Name);
+            var o = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.not").Include("kayitlar.AcilanDers").FirstOrDefault(a => a.OgrenciNo == Id);
+            Ogrenci ogrenci = o;
+            var k = o.kayitlar;
+            var n = k.Select(a => a.not);
+            return View(ogrenci);
         }
 
     }
