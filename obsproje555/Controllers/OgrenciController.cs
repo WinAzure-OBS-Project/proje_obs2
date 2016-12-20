@@ -260,7 +260,7 @@ namespace proje_obs.Controllers
         }
 
         [HttpGet]
-        public ActionResult SinavSonuclarimiGor(int yil)
+        public ActionResult SinavSonuclarimiGor()
         {
             //db'den çek, öğrenciyi çek, yıl bilgisi ile tuple'a ata
             ObsDbContext ctx = new ObsDbContext();

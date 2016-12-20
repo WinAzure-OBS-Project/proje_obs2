@@ -28,7 +28,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
     var kayitlar7 = kayitlar.Where(a => a.AcilanDers.YariYil == 7).ToList();
     var kayitlar8 = kayitlar.Where(a => a.AcilanDers.YariYil == 8).ToList();
     kayitlar.OrderBy(a => a.AcilanDers.YariYil);
-
+    <a href="/Ogrenci">Anasayfa</a>
     <input type="button" value="Göster/Gizle - 1.Yarıyıl" onclick="showMe('y1');" />
     <input type="button" value="Göster/Gizle - 2.Yarıyıl" onclick="showMe('y2');" />
     <input type="button" value="Göster/Gizle - 3.Yarıyıl" onclick="showMe('y3');" />
@@ -37,7 +37,8 @@ else if ( document.getElementById(blockId).style.display == '' ) {
     <input type="button" value="Göster/Gizle - 6.Yarıyıl" onclick="showMe('y6');" />
     <input type="button" value="Göster/Gizle - 7.Yarıyıl" onclick="showMe('y7');" />
     <input type="button" value="Göster/Gizle - 8.Yarıyıl" onclick="showMe('y8');" />
-    <div style="display:none" id="y1"><table style="border:1px">
+    <div style="display:none" id="y1">
+    <table style="border:1px">
     <thead>
         <tr>
             <td>Kayıt Id</td>

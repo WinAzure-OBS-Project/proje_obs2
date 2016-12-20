@@ -12,41 +12,36 @@
     HashSet<Kayit> kayitlar = (HashSet<Kayit>)o.kayitlar;
     int y = int.Parse(o.AktifKayitDonemi.Substring(0, 1));
     var kayitlar1 = kayitlar.Where(a => a.AcilanDers.YariYil == y || a.AcilanDers.YariYil == y - 1).ToList();
+    <a href="/Ogrenci">Anasayfa</a>
+    <table>
     <thead>
         <tr>
-            <td>Kayıt Id</td>
-            <td>Not Id</td>
-            <td>Ogrenci No</td>
             <td>Ders Adı</td>
-            <td>Yıl Not</td>
-            <td>Harf Notu</td>
+            <td>Vize</td>
+            <td>Final</td>
+            <td>But</td>
         </tr>
     </thead>
-    foreach (var k in kayitlar1)
+    @foreach (var k in kayitlar1)
     {
 
         using (Html.BeginForm("SinavSonuclarimiGor", "Ogrenci"))
         {
             <tr>
                 <td>
-                    <div>@k.not.kayit.KayitId</div>
+                    <div>@k.AcilanDers.DersAdi</div>
                 </td>
                 <td>
-                    <div>@k.not.kayit.NotId</div>
+                    <div>@k.not.Vize</div>
                 </td>
                 <td>
-                    <div>@k.not.kayit.OgrenciNo</div>
+                    <div>@k.not.Final</div>
                 </td>
                 <td>
-                    <div>@k.not.kayit.AcilanDers.DersAdi</div>
-                </td>
-                <td>
-                    <div>@k.not.YilNot</div>
-                </td>
-                <td>
-                    <div>@k.not.HarfNotu</div>
+                    <div>@k.not.But</div>
                 </td>
             </tr>
         }
     }
+    </table>
 }
