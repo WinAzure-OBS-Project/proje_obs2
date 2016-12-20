@@ -5,3 +5,21 @@
 
 <h2>DersSorumlusuEkle</h2>
 
+
+
+@using (Html.BeginForm("DersSorumlusuEkle", "idari"))
+{
+
+    <span>AkademisyenID:</span><input name="AkademisyenID" type="text" /><br />
+    <span>Ad:</span><input name="Adi" type="text" /><br />
+    <span>Soyad:</span><input name="Soyadi" type="text" /><br />
+    <span>Unvan:</span><input name="Unvani" type="text" /><br />
+    <span>Telefon:</span><input name="Telefonu" type="text" /><br />
+    <span>Mail:</span><input name="Maili" type="text" /><br />
+    <span>Telefon:</span><input name="Telefon" type="text" /><br />
+    <span>OdaNo:</span><input name="OdaNo" type="text" /><br />
+    <span>Sifre:</span><input name="Sifre" type="text" /><br />
+    <span>DanismanId:</span><input name="DanismanMi" type="text" /><br />
+    <input type="submit" value="Ekle" />
+}
+

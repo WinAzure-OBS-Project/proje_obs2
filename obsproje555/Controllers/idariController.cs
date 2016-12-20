@@ -44,6 +44,7 @@ namespace proje_obs.Controllers
             if (ogr != null)
             {
                 _Membership.Login(Convert.ToString(Id), "idari", Response);
+                
             }
             return RedirectToAction("Index");
         }
@@ -173,6 +174,7 @@ namespace proje_obs.Controllers
             o.DanismanId = DanismanId;
             o.Sifre = Sifre;
             ObsDbContext ctx = new ObsDbContext();
+
             ctx.Ogrenci.Add(o);
             ctx.SaveChanges();
             ctx.Dispose();
@@ -184,6 +186,8 @@ namespace proje_obs.Controllers
         public ActionResult DersSorumlusuListele()
         {
             ObsDbContext ctx = new ObsDbContext();
+            
+
             List<DersSorumlulari> dersSorumlulari = ctx.DersSorumlulari.ToList();
             ctx.Dispose();
 
@@ -208,19 +212,19 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult DersSorumlusuEkle(int id, string ad, string soyad, string unvan, string telefon,
-            string mail, string odaNo, string sifre, string danismanMi)
+        public ActionResult DersSorumlusuEkle(int AkademisyenID, string Adi, string Soyadi, string Unvani, string Telefonu,
+            string Maili, string OdaNo, string Sifre, string DanismanMi)
         {
             DersSorumlulari ds = new DersSorumlulari();
-            ds.AkademisyenID = id;
-            ds.Adi = ad;
-            ds.Soyadi = soyad;
-            ds.Unvani = unvan;
-            ds.Telefonu = telefon;
-            ds.Maili = mail;
-            ds.OdaNo = odaNo;
-            ds.Sifre = sifre;
-            ds.DanismanMi = Convert.ToBoolean(danismanMi);
+            ds.AkademisyenID = AkademisyenID;
+            ds.Adi = Adi;
+            ds.Soyadi = Soyadi;
+            ds.Unvani = Unvani;
+            ds.Telefonu = Telefonu;
+            ds.Maili = Maili;
+            ds.OdaNo = OdaNo;
+            ds.Sifre = Sifre;
+            ds.DanismanMi = Convert.ToBoolean(DanismanMi);
             ObsDbContext ctx = new ObsDbContext();
             ctx.DersSorumlulari.Add(ds);
             ctx.SaveChanges();
@@ -260,19 +264,19 @@ namespace proje_obs.Controllers
         }
 
         [HttpPost]
-        public ActionResult idariEkle(int id, string unvan, string ad, string soyad,
-            string mail, string tel, string fax, string adres, string sifre)
+        public ActionResult idariEkle(int Id, string Unvan, string Adi, string Soyadi,
+            string Mail, string Tel, string Fax, string Adres, string Sifre)
         {
             Idari idari = new Idari();
-            idari.Id = id;
-            idari.Unvan = unvan;
-            idari.Adi = ad;
-            idari.Soyadi = soyad;
-            idari.Mail = mail;
-            idari.Tel = tel;
-            idari.Fax = fax;
-            idari.Adres = adres;
-            idari.Sifre = sifre;
+            idari.Id = Id;
+            idari.Unvan = Unvan;
+            idari.Adi = Adi;
+            idari.Soyadi = Soyadi;
+            idari.Mail = Mail;
+            idari.Tel = Tel;
+            idari.Fax = Fax;
+            idari.Adres = Adres;
+            idari.Sifre = Sifre;
             ObsDbContext ctx = new ObsDbContext();
             ctx.Idari.Add(idari);
             ctx.SaveChanges();
