@@ -44,6 +44,7 @@ namespace proje_obs.Controllers
             if (ogr != null)
             {
                 _Membership.Login(Convert.ToString(Id), "idari", Response);
+                
             }
             return RedirectToAction("Index");
         }
