@@ -172,7 +172,6 @@
     <Compile Include="Dersler.cs" />
     <Compile Include="DersSorumlulari.cs" />
     <Compile Include="DersTarihler.cs" />
-    <Compile Include="DersTarihlers.cs" />
     <Compile Include="Donemler.cs" />
     <Compile Include="EgitimPlani.cs" />
     <Compile Include="Fakulte.cs" />
@@ -192,6 +191,10 @@
     <Compile Include="Migrations\201612201020271_test_test1.cs" />
     <Compile Include="Migrations\201612201020271_test_test1.Designer.cs">
       <DependentUpon>201612201020271_test_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201215536_test_test2.cs" />
+    <Compile Include="Migrations\201612201215536_test_test2.Designer.cs">
+      <DependentUpon>201612201215536_test_test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Notlar.cs" />
@@ -288,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612201020271_test_test1.resx">
       <DependentUpon>201612201020271_test_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201215536_test_test2.resx">
+      <DependentUpon>201612201215536_test_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
