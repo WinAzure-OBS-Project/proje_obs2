@@ -251,8 +251,6 @@ namespace proje_obs.Controllers
         {
             //öğrenciyi, kayıtları ve notları db'den eager loading yöntemi ile çek. home index'te örnek var.
             ObsDbContext ctx = new ObsDbContext();
-            Ogrenci ogrenci = null;
-            ObsDbContext ctx = new ObsDbContext();
             int Id = Convert.ToInt32(User.Identity.Name);
             var o = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.not").Include("kayitlar.AcilanDers").FirstOrDefault(a => a.OgrenciNo == Id);
             Ogrenci ogrenci = o;
