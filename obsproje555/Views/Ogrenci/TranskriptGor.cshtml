@@ -1,4 +1,4 @@
-﻿@using proje_obs
+@using proje_obs
 @model Ogrenci
 @{
     ViewBag.Title = "TranskriptGor";
@@ -6,7 +6,7 @@
 
 <h2>TranskriptGor</h2>
 
-@{ 
+@{
     /*List<AcilanDersler> acilanDersler = (List<AcilanDersler>)ViewBag.acilanDersler;
     List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
     List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;*/
@@ -15,13 +15,38 @@
 
     foreach(var acilanDers in acilanDersler)
     {
-        
+
         <!--bilgiler gösterilcek htmlde, mvclik iş yok. ama lojik kısım, db'de OR yapısı tam olmadığından karışık gelebilir-->
         <!--Yarıyıllara göre gruplanacak-->
     }*/
     Ogrenci o = Model;
-    List<Kayit> kayitlar = (List<Kayit>)o.kayitlar;
-    List<Notlar> notlar = (List<Notlar>)o.kayitlar.not;
+    //List<Kayit> kayitlar = (List<Kayit>)o.kayitlar;
+    //List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
+    HashSet<Kayit> kayitlar = (HashSet<Kayit>)o.kayitlar;
+    kayitlar.OrderBy(a => a.AcilanDers.YariYil);
+    <table>
+        @foreach (var k in kayitlar)
+        {
+
+            using (Html.BeginForm("TranskriptGor", "Ogrenci"))
+            {
+                <tr>
+                    <td>
+                        <div>@k.not.kayit.OgrenciNo</div>
+                    </td>
+                    <td>
+                        <div>@k.not.kayit.AcilanDers.DersAdi</div>
+                    </td>
+                    <td>
+                        <div>@k.not.YilNot</div>
+                    </td>
+                    <td>
+                        <div>@k.not.HarfNotu</div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
 
 
 
