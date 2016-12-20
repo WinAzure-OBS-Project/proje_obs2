@@ -5,3 +5,19 @@
 
 <h2>idariEkle</h2>
 
+
+@using (Html.BeginForm("idariEkle", "idari"))
+{
+
+    <span>IdariId:</span><input name="Id" type="text" /><br />
+    <span>Unvan:</span><input name="Unvan" type="text" /><br />
+    <span>Ad:</span><input name="Adi" type="text" /><br />
+    <span>Soyad:</span><input name="Soyadi" type="text" /><br />
+    <span>Mail:</span><input name="Mail" type="text" /><br />
+    <span>Telefon:</span><input name="Tel" type="text" /><br />
+    <span>Fax:</span><input name="Fax" type="text" /><br />
+    <span>Adres:</span><input name="Adres" type="text" /><br />
+    <span>Sifre:</span><input name="Sifre" type="text" /><br />
+    
+    <input type="submit" value="Ekle" />
+}
