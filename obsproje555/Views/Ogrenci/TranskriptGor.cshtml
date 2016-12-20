@@ -1,4 +1,5 @@
 ﻿@using proje_obs
+@model Ogrenci
 @{
     ViewBag.Title = "TranskriptGor";
 }
@@ -6,18 +7,23 @@
 <h2>TranskriptGor</h2>
 
 @{ 
-    List<AcilanDersler> acilanDersler = (List<AcilanDersler>)ViewBag.acilanDersler;
+    /*List<AcilanDersler> acilanDersler = (List<AcilanDersler>)ViewBag.acilanDersler;
     List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
-    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
+    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;*/
 
-    acilanDersler.OrderBy(acilanDers => acilanDers.YariYil);
+    /*acilanDersler.OrderBy(acilanDers => acilanDers.YariYil);
 
     foreach(var acilanDers in acilanDersler)
     {
         
         <!--bilgiler gösterilcek htmlde, mvclik iş yok. ama lojik kısım, db'de OR yapısı tam olmadığından karışık gelebilir-->
         <!--Yarıyıllara göre gruplanacak-->
-    }
+    }*/
+    Ogrenci o = Model;
+    List<Kayit> kayitlar = (List<Kayit>)o.kayitlar;
+    List<Notlar> notlar = (List<Notlar>)o.kayitlar.not;
+
+
 
 
 }

@@ -250,6 +250,7 @@ namespace proje_obs.Controllers
         public ActionResult TranskriptGor()
         {
             //öğrenciyi, kayıtları ve notları db'den eager loading yöntemi ile çek. home index'te örnek var.
+            ObsDbContext ctx = new ObsDbContext();
             Ogrenci ogrenci = null;
             //
             return View(ogrenci);
