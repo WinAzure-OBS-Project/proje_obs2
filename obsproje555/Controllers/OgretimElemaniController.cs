@@ -11,18 +11,46 @@ namespace proje_obs.Controllers
         // GET: OgretimElemani
         public ActionResult Index()
         {
-            if (Session["Id"] == null)
+            if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login");
             }
-            return View();
+            else if (!User.IsInRole("Hoca"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var ctx = new ObsDbContext();
+            var Id = Convert.ToInt32(User.Identity.Name);
+            var ogr = ctx.DersSorumlulari.FirstOrDefault(o => o.AkademisyenID == Id);
+            if (ogr != null)
+            {
+                return View(ogr);
+            }
+            ctx.Dispose();
+            return View(ogr);
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult Login(int Id, String Password)
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            var ogr = ctx.DersSorumlulari.FirstOrDefault(o => o.AkademisyenID == Id);
+            if (ogr != null)
+            {
+                _Membership.Login(Convert.ToString(ogr.AkademisyenID), "Hoca", Response);
+            }
+            ctx.Dispose();
+            return RedirectToAction("Index");
+        }
+
+        //eski yöntem
         //[HttpPost]
         //public ActionResult Login(DersSorumlulari ogretimElemani)
         //{

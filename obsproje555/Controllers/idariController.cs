@@ -8,8 +8,7 @@ namespace proje_obs.Controllers
 {
     public class idariController : Controller
     {
-
-        String authorize = "idari";
+        
         // GET: idari
         public ActionResult Index()
         {
@@ -17,7 +16,7 @@ namespace proje_obs.Controllers
             {
                 return RedirectToAction("Login");
             }
-            else if (!User.IsInRole(authorize))
+            else if (!User.IsInRole("idari"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -40,8 +39,8 @@ namespace proje_obs.Controllers
         public ActionResult Login(int Id, String password)
         {
             ObsDbContext ctx = new ObsDbContext();
-            var ogr = ctx.Idari.FirstOrDefault(o => o.Id == Id);
-            if (ogr != null)
+            var idari = ctx.Idari.FirstOrDefault(o => o.Id == Id);
+            if (idari != null)
             {
                 _Membership.Login(Convert.ToString(Id), "idari", Response);
                 
