@@ -45,6 +45,7 @@ namespace proje_obs.Controllers
         }
 
         //YÖNETİMSEL
+        //yapıldı
         public ActionResult AddPasswordsToDatabase()
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -73,13 +74,25 @@ namespace proje_obs.Controllers
         }
 
         //YÖNETİMSEL
+        //yapıldı
         public ActionResult OgrencisiOlmayanKayitlariSil()
         {
             ObsDbContext ctx = new ObsDbContext();
             ctx.Notlar.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)).Select(kayit => kayit.not));
             ctx.Kayit.RemoveRange(ctx.Kayit.Where(kayit => !ctx.Ogrenci.Any(ogrenci => ogrenci.OgrenciNo == kayit.OgrenciNo)));
             ctx.SaveChanges();
-            return View();
+            ctx.Dispose();
+            return RedirectToAction("Index");
+        }
+
+        //YÖNETİMSEL
+        public ActionResult KaydiOlmayanOgrencileriSil()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Ogrenci.RemoveRange(ctx.Ogrenci.Where(ogrenci => ogrenci.kayitlar.Count == 0));
+            ctx.SaveChanges();
+            ctx.Dispose();
+            return RedirectToAction("Index");
         }
 
         //YÖNETİMSEL
@@ -110,6 +123,7 @@ namespace proje_obs.Controllers
         }
 
         //YÖNETİMSEL
+        //yapıldı
         [HttpGet]
         public ActionResult KopyaKayitlariSil()
         {
@@ -128,6 +142,35 @@ namespace proje_obs.Controllers
             {
                 ctx.Notlar.Remove(k.not);
                 ctx.Kayit.Remove(k);
+            }
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("Index");
+        }
+
+        //YÖNETİMSEL
+        public ActionResult KaydiOlmayanAcilanDersleriSil()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.AcilanDersler.RemoveRange(ctx.AcilanDersler.Where(acilanDersler => !ctx.Kayit.Any(kayit => kayit.ADId == acilanDersler.ADId)));
+            ctx.SaveChanges();
+            ctx.Dispose();
+            return RedirectToAction("Index");
+        }
+
+        //YÖNETİMSEL
+        public ActionResult TumDersleriVeKayitlariOnayla()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            List<AcilanDersler> acilanDersler = ctx.AcilanDersler.ToList();
+            foreach(AcilanDersler acilanDers in acilanDersler)
+            {
+                foreach(Kayit k in acilanDers.Kayitlar)
+                {
+                    k.OnaylandiMi = true;
+                }
+                acilanDers.OnaylandiMi = true;
             }
             ctx.SaveChanges();
             ctx.Dispose();
