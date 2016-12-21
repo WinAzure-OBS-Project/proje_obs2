@@ -24,17 +24,21 @@ namespace proje_obs.Controllers
             //var a2 = a1.kayit;
             //var a3 = a2.Ogrenci;
             //var a4 = a3.Ad;
-            if (Session["Role"] != null)
+            if (Request.IsAuthenticated)
             {
-                String role = Session["Role"].ToString();
-                if (role == "Ogrenci")
+                if (User.IsInRole("Ogrenci"))
                 {
                     return RedirectToAction("Index", "Ogrenci");
                 }
-                else if (role == "OgretimElemani")
+                else if (User.IsInRole("OgretimElemani"))
                 {
                     return RedirectToAction("Index", "OgretimElemani");
                 }
+                else if (User.IsInRole("idari"))
+                {
+                    return RedirectToAction("Index", "idari");
+                }
+
 
             }
             return View();
@@ -129,6 +133,11 @@ namespace proje_obs.Controllers
             ctx.Dispose();
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Sidebar()
+        {
+            return PartialView();
         }
     }
 }

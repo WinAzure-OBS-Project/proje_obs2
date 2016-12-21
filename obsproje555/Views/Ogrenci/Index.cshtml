@@ -1,47 +1,5 @@
 ﻿@model proje_obs.Ogrenci
-<div class="row">
-    <div class="sidebar-left col">
-        &nbsp;
-        <ul>
-            <li>
-                <a href="/Ogrenci/TranskriptGor">Transkripti Gör</a>
-            </li>
-            <li>
-                <a>Ders programını gör</a>
-            </li>
-            <li>
-                <a>Danışman bilgilerim</a>
-            </li>
-            @{/*<li>
-                <a>Not hesaplama aracı</a>
-                <a href="/Ogrenci/TranskriptGor">Not Hesaplama Aracı</a>
-            </li>*/}
-            @{/*<li>
-                <a>Öğrenci ders kaynakları</a>
-                <a href="/Ogrenci/TranskriptGor">Öğrenci Ders Kaynakları</a>
-            </li>*/}
-            <li>
-                <a href="/Ogrenci/DersSecme">Ders Seç</a>
-            </li>
-            <li>
-                <a href="/Ogrenci/SinavSonuclarimiGor">Sınav Sonuçları</a>
-            </li>
-            <li>
-                <a href="/Ogrenci/Index">Parola Değişikliği</a>
-            </li>
-            <li>
-                <a href="/Ogrenci/UploadProfilePicture">Fotoğraf ekle</a>
-            </li>
-            <li>
-                @using (Html.BeginForm("Logout", "Ogrenci", FormMethod.Post))
-            {
-                    <input class="logout" type="submit" value="Çıkış yap" />
-                }
-            </li>
-        </ul>
-    </div>
-    <div class="center col">
-        &nbsp;
+    
         <fieldset>
             <legend>Öğrenci Bilgileri</legend>
             <table>
@@ -79,9 +37,3 @@
         <div class="photo">
             <!-- <img style="width:100%" src="_Storage.ReturnUrl(User.Identity.Name + ".jpg")" alt="henüz foto yüklenmemiş" /> -->
         </div>
-    </div>
-    <div class="sidebar-right col">
-        &nbsp;
-    </div>
-
-</div>

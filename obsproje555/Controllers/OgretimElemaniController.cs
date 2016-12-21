@@ -69,7 +69,7 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
-            Session.Clear();
+            _Membership.Logout();
             return RedirectToAction("Index", "Home");
         }
         

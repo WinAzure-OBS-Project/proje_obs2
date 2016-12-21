@@ -1,0 +1,128 @@
+﻿
+@if (User.IsInRole("Ogrenci"))
+{
+    <ul>
+        <li>
+            <a href="/Ogrenci/Index">Ana sayfa</a>
+        </li>
+        <li>
+            <a href="/Ogrenci/TranskriptGor">Transkripti Gör</a>
+        </li>
+        <li>
+            <a>Ders programını gör</a>
+        </li>
+        <li>
+            <a>Danışman bilgilerim</a>
+        </li>
+        <li>
+            <a href="/Ogrenci/DersSecme">Ders Seç</a>
+        </li>
+        <li>
+            <a href="/Ogrenci/SinavSonuclarimiGor">Sınav Sonuçları</a>
+        </li>
+        <li>
+            <a>Parola Değişikliği</a>
+        </li>
+        <li>
+            <a>Fotoğraf ekle</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("Logout", "Ogrenci", FormMethod.Post))
+                {
+                <input class="logout" type="submit" value="Çıkış yap" />
+            }
+        </li>
+    </ul>
+}
+@if (User.IsInRole("Hoca"))
+{
+    <ul>
+        <li>
+            <a href="/OgretimElemani/Index">Ana sayfa</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/DersSecmeTalepleriniGor">Ders seçimleri</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/DersEklemeTalebi">Ders ekleme talebi</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/DersEklemeTaleplerimiListele">Ders ekleme taleplerim</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/BuSenekiDerslerimiGor">Bu seneki derslerim</a>
+        </li>
+        <li>
+            <a>Dersleri görüntüle</a>
+        </li>
+        <li>
+            <a>Sınav sonucu gir</a>
+        </li>
+        <li>
+            <a>Devamsızlık bilgisi gir</a>
+        </li>
+        <li>
+            <a>Danışmanı olduğu öğrencileri görüntüle</a>
+        </li>
+        <li>
+            <a>Ders not ağırlığı düzenle</a>
+        </li>
+        <li>
+            <a>Mesaj at</a>
+        </li>
+        <li>
+            <a>Proje alan öğrenciler</a>
+        </li>
+        <li>
+            <a href="/OgretimElemani/UploadProfilePicture">Fotoğraf ekle</a>
+        </li>
+        <li>
+            <a>Şifreni değiştir</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("Logout", "OgretimElemani", FormMethod.Post))
+            {
+                <input class="logout" type="submit" value="Çıkış yap" />
+            }
+        </li>
+    </ul>
+}
+@if (User.IsInRole("idari"))
+{
+    <ul>
+        <li><a href="/idari/Index">Ana sayfa</a></li>
+        <li>
+            <a href="/idari/OgrenciListele">Öğrencileri listele</a>
+        </li>
+        <li>
+            <a href="/idari/DersSorumlusuListele">Öğretmenleri listele</a>
+        </li>
+        <li>
+            <a href="/idari/idariListele">İdari elemanları listele</a>
+        </li>
+        <li>
+            <a href="/idari/TarihleriListele">Tarihleri listele</a>
+        </li>
+        <li>
+            <a href="/idari/DersEklemeTalepleriListele">Ders ekleme talepleri</a>
+        </li>
+        <li>
+            <a>Duyuru yap</a>
+        </li>
+        <li>
+            <a href="/idari/UploadBanner">Siteyi düzenle</a>
+        </li>
+        <li>
+            <a>Şifreni değiştir</a>
+        </li>
+        <li>
+            <a>Fotoğraf ekle</a>
+        </li>
+        <li>
+            @using (Html.BeginForm("Logout", "idari", FormMethod.Post))
+                {
+                <input class="logout" type="submit" value="Çıkış yap" />
+            }
+        </li>
+    </ul>
+}

@@ -17,9 +17,25 @@
     </div>
     <div class="body">
         <div class="body-container">
-            @RenderBody()
+            @{if (Request.IsAuthenticated)
+                {
+                    <div class="row">
+                        <div class="_Sidebar col">
+                            @{Html.RenderAction("Sidebar", "Home");}
+                        </div>
+                        <div class="_Content col">
+                            @RenderBody()
+                        </div>
+                    </div>
+                                }
+                                else
+                                {
+                                    @RenderBody()
+                                }
+            }
+
         </div>
-        
+
     </div>
     <div class="footer">
 

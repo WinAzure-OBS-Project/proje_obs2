@@ -33,29 +33,22 @@ textarea {
     display:inline-block;
 }
 
-.sidebar-left {
+._Sidebar {
     float:left;
     display:inline-block;
     background-color:aqua;
-    width:16%;
+    width:20%;
     margin:auto 5px;
 }
 
-.center {
+._Content {
     float:left;
     display:inline-block;
     background-color:aqua;
-    width:65%;
+    width:75%;
     margin:auto 5px;
 }
 
-.sidebar-right {
-    float:left;
-    display:inline-block;
-    background-color:aqua;
-    width:16%;
-    margin:auto 5px;
-}
 
 fieldset {
     width:65%;
