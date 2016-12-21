@@ -84,7 +84,7 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult TarihEkle(String dersAcmaBaslangic, String dersAcmaBitis, String dersSecmeBaslangic, String dersSecmeBitis)
         {
-            //
+            
             ObsDbContext ctx = new ObsDbContext();
             DersTarihler dt = new DersTarihler();
             dt.dersAcmaBaslangic = DateTime.Parse(dersAcmaBaslangic);
