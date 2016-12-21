@@ -9,11 +9,7 @@
 @{
     foreach (KeyValuePair<Ogrenci, List<Kayit>> pair in Model)
     {
+        <!--öğrenci bilgileri, kayıt listesi eleman sayısı-->
         <a href="/OgretimElemani/DersSecmeTalebiniIncele/@pair.Key.OgrenciNo">İncele</a><br />
-        @*using (Html.BeginForm("DersSecmeTalebiniOnayla","OgretimElemani"))
-        {
-            <input type="hidden" value="" />
-            <input type="submit" value="Onayla"/>
-        }*@
     }
 }
