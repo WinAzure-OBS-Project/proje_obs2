@@ -80,7 +80,7 @@ namespace proje_obs.Controllers
             Dictionary<Ogrenci, List<Kayit>> dersSecmeTalepleri = null;
             ObsDbContext ctx = new ObsDbContext();
             ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers")
-                .Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false))
+                .Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
                 .ToDictionary(ogrenci=>ogrenci, ogrenci=>ogrenci.kayitlar);
             ctx.Dispose(); //çok güzel yazmışım da kayıt listesine burada gerek yokmuş :'( öğretici/hatırlatıcı amaçla dursun burda
 
@@ -173,6 +173,7 @@ namespace proje_obs.Controllers
             acilanDers.DersKodu = DersKodu;
             acilanDers.YilDers = YilDers;
             acilanDers.YariYil = Yariyil;
+            acilanDers.OnaylandiMi = false;
             ctx.AcilanDersler.Add(acilanDers);
             ctx.SaveChanges();
             ctx.Dispose();

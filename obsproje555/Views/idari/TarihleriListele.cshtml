@@ -1,0 +1,23 @@
+﻿@using proje_obs
+@model List<DersTarihler>
+
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Ders açma başlangıç</td>
+        <td>Ders açma bitiş</td>
+        <td>Ders seçme başlangıç</td>
+        <td>Ders seçme bitiş</td>
+    </tr>
+    @foreach (DersTarihler tarihler in Model)
+    {
+        <tr>
+            <td>@tarihler.Id</td>
+            <td>@tarihler.dersAcmaBaslangic</td>
+            <td>@tarihler.dersAcmaBitis</td>
+            <td>@tarihler.dersSecmeBaslangic</td>
+            <td>@tarihler.dersSecmeBitis</td>
+            <td><a href="/idari/TarihiSil/@tarihler.Id">Sil</a></td>
+        </tr>
+    }
+</table>

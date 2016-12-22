@@ -98,7 +98,7 @@ namespace proje_obs.Controllers
             return RedirectToAction("TarihleriListele");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult TarihiSil(int id)
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -120,7 +120,7 @@ namespace proje_obs.Controllers
             return View(eklemeTalepleri);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult DersEklemeTalebiniOnayla(int acilanDersId)
         {
             ObsDbContext ctx = new ObsDbContext();

@@ -271,6 +271,7 @@
     <Content Include="Views\idari\DersSorumlusuEkle.cshtml" />
     <Content Include="Views\idari\TarihleriBelirle.cshtml" />
     <Content Include="Views\Home\Sidebar.cshtml" />
+    <Content Include="Views\idari\TarihleriListele.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

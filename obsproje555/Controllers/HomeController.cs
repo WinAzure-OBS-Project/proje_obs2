@@ -180,6 +180,18 @@ namespace proje_obs.Controllers
 
         public ActionResult Sidebar()
         {
+            ObsDbContext ctx = new ObsDbContext();
+            if(User.IsInRole("Hoca"))
+            {
+                ViewBag.count = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers")
+                .Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
+                .Select(a => a.kayitlar).ToList().Count;
+            }
+            if(User.IsInRole("idari"))
+            {
+                ViewBag.count = ctx.AcilanDersler.Where(ders => ders.OnaylandiMi == false).Count();
+            }
+            ctx.Dispose();
             return PartialView();
         }
     }

@@ -6,12 +6,17 @@
 
 <h2>DersEklemeTalepleriListele</h2>
 
-@foreach(AcilanDersler ders in Model)
-{
-    using (Html.BeginForm("DersEklemeTalebiniOnayla", "idari"))
+<table>
+
+    @foreach (AcilanDersler ders in Model)
     {
-        <!--Bilgileri görüntüle-->
-        <input type="hidden" value="@ders.ADId" name="acilanDersId"/>
-        <input type="submit" />
+        <tr>
+            <td>@ders.AkademisyenId</td>
+            <td>@ders.DersAdi</td>
+            <td>@ders.DersKodu</td>
+            <td>@ders.YariYil</td>
+            <td>@ders.YilDers</td>
+            <td><a href="/idari/DersEklemeTalebiniOnayla/@ders.ADId"></a></td>
+        </tr>
     }
-}
+</table>
