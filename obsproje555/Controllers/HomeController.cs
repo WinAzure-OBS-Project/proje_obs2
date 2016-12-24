@@ -183,11 +183,22 @@ namespace proje_obs.Controllers
             ObsDbContext ctx = new ObsDbContext();
             if(User.IsInRole("Hoca"))
             {
-                ViewBag.count = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers")
-                .Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
-                .Select(a => a.kayitlar).ToList().Count;
+                ViewBag.count = 0;
+                var ogrenciler = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers");
+                var sayilacakOgrenciler = new List<Ogrenci>();
+                foreach(Ogrenci ogrenci in ogrenciler)
+                {
+                    if(ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
+                    {
+                        sayilacakOgrenciler.Add(ogrenci);
+                    }
+                }
+                //.Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)));
+
+                ViewBag.count = sayilacakOgrenciler.Count;
+
             }
-            if(User.IsInRole("idari"))
+            if (User.IsInRole("idari"))
             {
                 ViewBag.count = ctx.AcilanDersler.Where(ders => ders.OnaylandiMi == false).Count();
             }
