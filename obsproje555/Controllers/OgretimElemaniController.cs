@@ -77,12 +77,22 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult DersSecmeTalepleriniGor()
         {
-            Dictionary<Ogrenci, List<Kayit>> dersSecmeTalepleri = null;
+            Dictionary<Ogrenci, List<Kayit>> dersSecmeTalepleri = new Dictionary<Ogrenci, List<Kayit>>();
             ObsDbContext ctx = new ObsDbContext();
-            ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers")
-                .Where(ogrenci => ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
-                .ToDictionary(ogrenci=>ogrenci, ogrenci=>ogrenci.kayitlar);
-            ctx.Dispose(); //çok güzel yazmışım da kayıt listesine burada gerek yokmuş :'( öğretici/hatırlatıcı amaçla dursun burda
+            var ogrenciler = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers");
+            var sayilacakOgrenciler = new List<Ogrenci>();
+            foreach (Ogrenci ogrenci in ogrenciler)
+            {
+                if (ogrenci.kayitlar.Any(kayit => kayit.OnaylandiMi == false && ogrenci.DanismanId == Convert.ToInt32(User.Identity.Name)))
+                {
+                    sayilacakOgrenciler.Add(ogrenci);
+                }
+            }
+            foreach(Ogrenci ogrenci in sayilacakOgrenciler)
+            {
+                dersSecmeTalepleri.Add(ogrenci, ogrenci.kayitlar.ToList());
+            }
+            ctx.Dispose(); 
 
             return View(dersSecmeTalepleri);
         }
@@ -121,7 +131,21 @@ namespace proje_obs.Controllers
             bool DersEklemeHaftasi = false;
             ObsDbContext ctx = new ObsDbContext();
 
-            DersTarihlers dt = ctx.DersTarihlers.Last();
+            DersTarihlers dt = null;
+            try
+            {
+                dt = ctx.DersTarihlers.ToList().ElementAt(0);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("derstarihler tablosu boş");
+            }
+            
+            if (dt == null) //herhangi bir derstarih kaydı olmadığından.
+            {
+                return RedirectToAction("Index");
+            }
             DersEklemeHaftasi = (DateTime.Now > dt.dersAcmaBaslangic && DateTime.Now < dt.dersAcmaBitis);
 
             List<Dersler> dersler = null;
@@ -129,11 +153,13 @@ namespace proje_obs.Controllers
             if(DersEklemeHaftasi)
             {
                 dersler = ctx.Dersler.ToList();
+                ctx.Dispose();
                 return View(dersler);
             }
             else
             {
                 //
+                ctx.Dispose();
                 return RedirectToAction("DersEklemeTaleplerimiListele");
             }
         }
@@ -142,7 +168,7 @@ namespace proje_obs.Controllers
         public ActionResult DersEklemeTaleplerimiListele()
         {
             //hocanın taleplerinden, henüz onaylanmamışları getir
-            List<AcilanDersler> taleplerim = null;
+            List<AcilanDersler> taleplerim = new List<AcilanDersler>();
             int uid = Convert.ToInt32(User.Identity.Name);
             ObsDbContext ctx = new ObsDbContext();
             taleplerim = ctx.AcilanDersler.Where(acilanDers => acilanDers.AkademisyenId == uid && acilanDers.OnaylandiMi == false).ToList();

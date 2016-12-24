@@ -87,6 +87,8 @@ namespace proje_obs.Controllers
             
             ObsDbContext ctx = new ObsDbContext();
             DersTarihlers dt = new DersTarihlers();
+            dt.Id = (DateTime.Now.Ticks % 1200).ToString();
+            dt.Yil = DateTime.Now.Year.ToString();
             dt.dersAcmaBaslangic = DateTime.Parse(dersAcmaBaslangic);
             dt.dersAcmaBitis = DateTime.Parse(dersAcmaBitis);
             dt.dersSecmeBaslangic = DateTime.Parse(dersSecmeBaslangic);
