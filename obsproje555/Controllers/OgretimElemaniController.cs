@@ -121,7 +121,7 @@ namespace proje_obs.Controllers
             bool DersEklemeHaftasi = false;
             ObsDbContext ctx = new ObsDbContext();
 
-            DersTarihler dt = ctx.DersTarihler.Last();
+            DersTarihlers dt = ctx.DersTarihlers.Last();
             DersEklemeHaftasi = (DateTime.Now > dt.dersAcmaBaslangic && DateTime.Now < dt.dersAcmaBitis);
 
             List<Dersler> dersler = null;

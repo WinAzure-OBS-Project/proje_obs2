@@ -73,9 +73,9 @@ namespace proje_obs.Controllers
         [HttpGet]
         public ActionResult TarihleriListele()//bu ekranda silip ekleme yapacak
         {
-            List<DersTarihler> tarihler = null;
+            List<DersTarihlers> tarihler = null;
             ObsDbContext ctx = new ObsDbContext();
-            tarihler = ctx.DersTarihler.ToList();
+            tarihler = ctx.DersTarihlers.ToList();
             ctx.Dispose();
 
             return View(tarihler);
@@ -86,12 +86,12 @@ namespace proje_obs.Controllers
         {
             
             ObsDbContext ctx = new ObsDbContext();
-            DersTarihler dt = new DersTarihler();
+            DersTarihlers dt = new DersTarihlers();
             dt.dersAcmaBaslangic = DateTime.Parse(dersAcmaBaslangic);
             dt.dersAcmaBitis = DateTime.Parse(dersAcmaBitis);
             dt.dersSecmeBaslangic = DateTime.Parse(dersSecmeBaslangic);
             dt.dersSecmeBitis = DateTime.Parse(dersSecmeBitis);
-            ctx.DersTarihler.Add(dt);
+            ctx.DersTarihlers.Add(dt);
             ctx.SaveChanges();
             ctx.Dispose();
 
@@ -102,7 +102,7 @@ namespace proje_obs.Controllers
         public ActionResult TarihiSil(int id)
         {
             ObsDbContext ctx = new ObsDbContext();
-            ctx.DersTarihler.Remove(ctx.DersTarihler.First(dt => dt.Id == id.ToString()));
+            ctx.DersTarihlers.Remove(ctx.DersTarihlers.First(dt => dt.Id == id.ToString()));
             ctx.SaveChanges();
             ctx.Dispose();
 

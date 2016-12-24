@@ -7,13 +7,13 @@ using System.Web;
 
 namespace proje_obs
 {
-    public class DersTarihler
+    public class DersTarihlers
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity) ]
         public String Id { get; set; }
         public DateTime dersSecmeBaslangic { get; set; }
         public DateTime dersAcmaBaslangic { get; set; }
         public DateTime dersSecmeBitis { get; set; }
         public DateTime dersAcmaBitis { get; set; }
+        public String Yil { get; set; }
     }
 }

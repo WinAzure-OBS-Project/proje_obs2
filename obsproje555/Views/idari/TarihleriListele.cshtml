@@ -1,5 +1,5 @@
 ﻿@using proje_obs
-@model List<DersTarihler>
+@model List<DersTarihlers>
 
 <table>
     <tr>
@@ -9,7 +9,7 @@
         <td>Ders seçme başlangıç</td>
         <td>Ders seçme bitiş</td>
     </tr>
-    @foreach (DersTarihler tarihler in Model)
+    @foreach (DersTarihlers tarihler in Model)
     {
         <tr>
             <td>@tarihler.Id</td>
