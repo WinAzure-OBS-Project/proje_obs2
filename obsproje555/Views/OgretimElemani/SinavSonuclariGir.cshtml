@@ -1,25 +1,32 @@
 ﻿@using proje_obs
-@model Dictionary<Ogrenci,Notlar>
+@model Dictionary<Ogrenci, Notlar>
 @{
     ViewBag.Title = "SinavSonuclariGir";
 }
 
 <h2>SinavSonuclariGir</h2>
 
-@{ 
-    List<Kayit> kayitlar = (List<Kayit>)ViewBag.kayitlar;
-    List<Notlar> notlar = (List<Notlar>)ViewBag.notlar;
-    List<Ogrenci> ogrenciler = (List<Ogrenci>)ViewBag.ogrenciler;
-    kayitlar.OrderBy(kayit => kayit.OgrenciNo);
-    
-    foreach(var kayit in kayitlar)
-    {
-        using (Html.BeginForm("SinavSonucunuKaydet", "OgretimElemani"))
+@{
+    <table>
+        @foreach (KeyValuePair<Ogrenci, Notlar> kp in Model)
         {
-            <input type="hidden" value="@kayit.KayitId" name="kayitId" />
-            <span>Ogrenci adı:</span><span>@ogrenciler.First(o=>o.OgrenciNo == kayit.OgrenciNo).Ad</span>
-            <span>Vize:</span><input type="text" value="@notlar.First(not=>not.KayitId == kayit.KayitId).Vize" name="VizeNotu"/>
-            <input type="submit" value="Kaydet"/>
-        }<br />
-    }
+
+            using (Html.BeginForm("SinavSonucunuKaydet", "OgretimElemani"))
+            {
+                <tr>
+                    <input type="hidden" value="@kp.Value.KayitId" name="notId" />
+                    <td>Öğrenci adı:</td>
+                    <td>@kp.Key.OgrenciNo).Ad</td>
+                    <td>Vize:</td>
+                    <td><input type="text" value="@kp.Value.Vize" name="vize" /></td>
+                    <td>Final:</td>
+                    <td><input type="text" value="@kp.Value.Final" name="final" /></td>
+                    <td>Büt:</td>
+                    <td><input type="text" value="@kp.Value.But" name="butunleme" /></td>
+                    <td><input type="submit" value="Kaydet" /></td>
+
+                </tr>
+            }
+        }
+    </table>
 }

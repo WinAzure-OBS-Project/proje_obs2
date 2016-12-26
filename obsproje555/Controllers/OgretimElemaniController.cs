@@ -103,14 +103,14 @@ namespace proje_obs.Controllers
             Tuple<Ogrenci, List<Kayit>> talep; //doldur
             //
             ObsDbContext ctx = new ObsDbContext();
-            Ogrenci ogrenci = ctx.Ogrenci.Include("kayitlar").First(o => o.OgrenciNo == ogrenciId);
+            Ogrenci ogrenci = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers").First(o => o.OgrenciNo == ogrenciId);
             talep = new Tuple<Ogrenci, List<Kayit>>(ogrenci, ogrenci.kayitlar.ToList());
             ctx.Dispose();
 
             return View(talep);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult DersSecmeTalebiniOnayla(int ogrenciNo)
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -268,7 +268,7 @@ namespace proje_obs.Controllers
             var kayitlar = acilanDersler.Kayitlar;
             foreach(Kayit k in kayitlar)
             {
-                ogrenci_not.Add(k.Ogrenci, k.not);
+                ogrenci_not.Add(k.Ogrenci, ctx.Notlar.First(not=>not.KayitId==k.KayitId));
             }
             
             return View(ogrenci_not);

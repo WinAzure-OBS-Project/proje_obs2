@@ -286,6 +286,24 @@ namespace proje_obs.Controllers
             return RedirectToAction("idariListele");
         }
 
+        [HttpGet]
+        public ActionResult idariSil(int idariId)
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Idari.Remove(ctx.Idari.First(idari => idari.Id == idariId));
+            ctx.SaveChanges();
+            ctx.Dispose();
+            return RedirectToAction("idariListele");
+        }
 
+        [HttpGet]
+        public ActionResult OgrenciSil(int ogrenciId)
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            ctx.Ogrenci.Remove(ctx.Ogrenci.First(idari => idari.OgrenciNo == ogrenciId));
+            ctx.SaveChanges();
+            ctx.Dispose();
+            return RedirectToAction("idariListele");
+        }
     }
 }
