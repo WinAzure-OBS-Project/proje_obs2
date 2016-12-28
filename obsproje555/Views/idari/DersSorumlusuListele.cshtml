@@ -1,6 +1,6 @@
 ﻿@using proje_obs
 @model List<DersSorumlulari>
-
+@using System.Text
 @{
     ViewBag.Title = "DersSorumlusuListele";
 }
@@ -10,12 +10,14 @@
 <table>
     @foreach (DersSorumlulari ds in Model)
     {
+        
         <tr>
-            <td>@ds.Adi @ds.Soyadi</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(ds.Adi + ds.Soyadi)</td>
             <td>@ds.AkademisyenID</td>
             <td>@ds.Unvani</td>
             <td><a href="/idari/DersSorumlusuSil?hocaId=@ds.AkademisyenID">DersSorumlusu silme</a></td>
         </tr>
+        
     }
 </table>
 <a href="/idari/DersSorumlusuEkle">DersSorumlusu ekle</a>

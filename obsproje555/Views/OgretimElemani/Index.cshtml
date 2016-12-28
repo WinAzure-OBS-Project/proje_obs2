@@ -1,5 +1,5 @@
 ﻿@model proje_obs.DersSorumlulari
-
+@using System.Text
 <fieldset>
     <legend>Öğretmen Bilgileri</legend>
     <table>
@@ -9,20 +9,19 @@
         </tr>
         <tr>
             <td>Adı Soyadı</td>
-            <td>@Html.Encode(Model.Adi + " " + Model.Soyadi)</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes((Model.Adi + " " + Model.Soyadi)))</td>
         </tr>
         <tr>
             <td>Telefonu</td>
-            <td>@Model.Telefonu</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Telefonu))</td>
         </tr>
         <tr>
             <td>Maili</td>
-            <td>@Model.Maili</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Maili))</td>
         </tr>
 
     </table>
 </fieldset>
 <div class="photo">
     <!--<img style="width:100%" src="_Storage.ReturnUrl(User.Identity.Name + ".jpg")" alt="henüz foto yüklenmemiş" />-->
-</div>
 </div>

@@ -1,5 +1,6 @@
 ﻿@using proje_obs
 @model List<Dersler>
+@using System.Text
 @{
     ViewBag.Title = "DersEklemeTalebi";
 }
@@ -21,7 +22,10 @@
                 <select name="DersKodu">
                     @foreach (Dersler ders in Model)
                     {
-                        <option value="@ders.DersKodu">@ders.DersAdi</option>
+                        byte[] bytes = Encoding.Default.GetBytes(ders.DersAdi);
+                        String myString = Encoding.UTF8.GetString(bytes);
+                        
+                        <option value="@ders.DersKodu">@myString</option>
                     }
                 </select>
             </td>

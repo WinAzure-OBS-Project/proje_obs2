@@ -261,7 +261,7 @@ namespace proje_obs.Controllers
             //eager loading, öğrenciler, kayıtları ve notlarını çek include ile. ya da çekme bilemedim
 
             Dictionary<Ogrenci, Notlar> ogrenci_not = new Dictionary<Ogrenci, Notlar>();
-            
+            ViewBag.dersId = dersId;
             ObsDbContext ctx = new ObsDbContext();
 
             var acilanDersler = ctx.AcilanDersler.First(ad => ad.ADId == dersId);
@@ -276,17 +276,55 @@ namespace proje_obs.Controllers
         }
         
         [HttpPost]
-        public ActionResult SinavSonucunuKaydet(int notId, int vize, int final, int butunleme)
+        public ActionResult SinavSonucunuKaydet(int notId, int vize, int final, int butunleme, int dersId)
         {
             ObsDbContext ctx = new ObsDbContext();
             Notlar not = ctx.Notlar.First(n => n.NotId == notId);
             not.Vize = vize;
             not.Final = final;
             not.But = butunleme;
+            not.HarfNotu = HarfNotu(0.4 * vize + 0.6 * (butunleme == 0 ? final : butunleme));
+            not.YilNot = 0.4 * vize + 0.6 * (butunleme == 0 ? final : butunleme);
             ctx.SaveChanges();
             ctx.Dispose();
 
-            return RedirectToAction("SinavSonuclariGir");
+            return RedirectToAction("SinavSonuclariGir", dersId);
+        }
+
+        public String HarfNotu(double a)
+        {
+            if (a>=90)
+            {
+                return "AA";
+            }
+            if (a >= 85)
+            {
+                return "BA";
+            }
+            if (a >= 80)
+            {
+                return "BB";
+            }
+            if (a >= 70)
+            {
+                return "CB";
+            }
+            if (a >= 60)
+            {
+                return "CC";
+            }
+            if (a>=55)
+            {
+                return "DC";
+            }
+            if(a>=50)
+            {
+                return "DD";
+            }
+            else
+            {
+                return "FF";
+            }
         }
     }
 }

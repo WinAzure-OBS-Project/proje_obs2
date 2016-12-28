@@ -1,5 +1,6 @@
 ﻿@using proje_obs
 @model List<Ogrenci>
+    @using System.Text
 @{
     ViewBag.Title = "OgrenciListele";
 }
@@ -10,7 +11,7 @@
     @foreach(Ogrenci o in Model)
     {
         <tr>
-            <td>@o.Ad @o.Soyad</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Ad + " " + o.Soyad))</td>
             <td>@o.OgrenciNo</td>
             <td>@o.DanismanId</td>
             <td><a href="/idari/OgrenciSil?ogrenciId=@o.OgrenciNo"</td>
