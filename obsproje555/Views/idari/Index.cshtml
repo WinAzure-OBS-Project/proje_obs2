@@ -1,31 +1,32 @@
 ﻿@using proje_obs
 @model Idari
+    @using System.Text
 <fieldset>
     <legend>İdari bilgileri</legend>
     <table>
         <tr>
             <td>Id</td>
-            <td>@Model.Id</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Id.ToString()))</td>
         </tr>
         <tr>
             <td>Adı Soyadı</td>
-            <td>@Model.Adi @Model.Soyadi</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Adi)) @Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Soyadi))</td>
         </tr>
         <tr>
             <td>Mail</td>
-            <td>@Model.Mail</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Mail))</td>
         </tr>
         <tr>
             <td>Telefon</td>
-            <td>@Model.Tel</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Tel))</td>
         </tr>
         <tr>
             <td>Adresi</td>
-            <td>@Model.Adres</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Adres))</td>
         </tr>
         <tr>
             <td>Ünvanı</td>
-            <td>@Model.Unvan</td>
+            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Unvan))</td>
         </tr>
     </table>
 </fieldset>

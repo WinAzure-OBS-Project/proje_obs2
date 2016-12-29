@@ -1,19 +1,19 @@
 ﻿@model proje_obs.Ogrenci
-    
+    @using System.Text
         <fieldset>
             <legend>Öğrenci Bilgileri</legend>
             <table>
                 <tr>
                     <td>Öğrenci Numarası:</td>
-                    <td>@Model.OgrenciNo</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.OgrenciNo.ToString()))</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Adı:</td>
-                    <td>@Html.Encode(Model.Ad)</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Ad))</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Soyadı:</td>
-                    <td>@Html.Encode(Model.Soyad)</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Soyad))</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Doğum Tarihi:</td>
@@ -21,15 +21,15 @@
                 </tr>
                 <tr>
                     <td>Öğrenci Aktif Kayıt Dönemi:</td>
-                    <td>@Model.AktifKayitDonemi</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.AktifKayitDonemi))</td>
                 </tr>
                 <tr>
                     <td>Öğrenci E-posta:</td>
-                    <td>@Model.Eposta</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Eposta))</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Telefonu:</td>
-                    <td>@Model.Telefon</td>
+                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Telefon))</td>
                 </tr>
 
             </table>

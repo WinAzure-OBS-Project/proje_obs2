@@ -11,7 +11,12 @@
     @foreach (AcilanDersler acilanDers in Model)
     {
     <tr>
-        <td>@acilanDers.ADId</td><td>@acilanDers.DersAdi</td><td><a href="/OgretimElemani/TalebimiSil/@acilanDers.ADId">Talebimi sil</a></td>
+        <td>@acilanDers.ADId</td>
+        <td>@acilanDers.DersAdi</td>
+        <td>@acilanDers.DersKodu</td>
+        <td>@acilanDers.YariYil</td>
+        <td>@acilanDers.YilDers</td>
+        <td><a href="/OgretimElemani/TalebimiSil?acilanDersId=@acilanDers.ADId">Talebimi sil</a></td>
     </tr>
     }
 </table>

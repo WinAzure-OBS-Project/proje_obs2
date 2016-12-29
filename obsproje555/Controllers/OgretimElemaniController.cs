@@ -103,14 +103,14 @@ namespace proje_obs.Controllers
             Tuple<Ogrenci, List<Kayit>> talep; //doldur
             //
             ObsDbContext ctx = new ObsDbContext();
-            Ogrenci ogrenci = ctx.Ogrenci.Include("kayitlar").First(o => o.OgrenciNo == ogrenciId);
+            Ogrenci ogrenci = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.AcilanDers").First(o => o.OgrenciNo == ogrenciId);
             talep = new Tuple<Ogrenci, List<Kayit>>(ogrenci, ogrenci.kayitlar.ToList());
             ctx.Dispose();
 
             return View(talep);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult DersSecmeTalebiniOnayla(int ogrenciNo)
         {
             ObsDbContext ctx = new ObsDbContext();
@@ -261,14 +261,14 @@ namespace proje_obs.Controllers
             //eager loading, öğrenciler, kayıtları ve notlarını çek include ile. ya da çekme bilemedim
 
             Dictionary<Ogrenci, Notlar> ogrenci_not = new Dictionary<Ogrenci, Notlar>();
-            
+            ViewBag.dersId = dersId;
             ObsDbContext ctx = new ObsDbContext();
 
             var acilanDersler = ctx.AcilanDersler.First(ad => ad.ADId == dersId);
             var kayitlar = acilanDersler.Kayitlar;
             foreach(Kayit k in kayitlar)
             {
-                ogrenci_not.Add(k.Ogrenci, k.not);
+                ogrenci_not.Add(k.Ogrenci, ctx.Notlar.First(not=>not.KayitId==k.KayitId));
             }
             
             return View(ogrenci_not);
@@ -276,17 +276,55 @@ namespace proje_obs.Controllers
         }
         
         [HttpPost]
-        public ActionResult SinavSonucunuKaydet(int notId, int vize, int final, int butunleme)
+        public ActionResult SinavSonucunuKaydet(int notId, int vize, int final, int butunleme, int dersId)
         {
             ObsDbContext ctx = new ObsDbContext();
             Notlar not = ctx.Notlar.First(n => n.NotId == notId);
             not.Vize = vize;
             not.Final = final;
             not.But = butunleme;
+            not.HarfNotu = HarfNotu(0.4 * vize + 0.6 * (butunleme == 0 ? final : butunleme));
+            not.YilNot = 0.4 * vize + 0.6 * (butunleme == 0 ? final : butunleme);
             ctx.SaveChanges();
             ctx.Dispose();
 
-            return RedirectToAction("SinavSonuclariGir");
+            return RedirectToAction("SinavSonuclariGir", dersId);
+        }
+
+        public String HarfNotu(double a)
+        {
+            if (a>=90)
+            {
+                return "AA";
+            }
+            if (a >= 85)
+            {
+                return "BA";
+            }
+            if (a >= 80)
+            {
+                return "BB";
+            }
+            if (a >= 70)
+            {
+                return "CB";
+            }
+            if (a >= 60)
+            {
+                return "CC";
+            }
+            if (a>=55)
+            {
+                return "DC";
+            }
+            if(a>=50)
+            {
+                return "DD";
+            }
+            else
+            {
+                return "FF";
+            }
         }
     }
 }

@@ -137,7 +137,7 @@ namespace proje_obs.Controllers
             var o = ctx.Ogrenci.FirstOrDefault(a => a.OgrenciNo == Id);
             //secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil==int.Parse(o.AktifKayitDonemi.Split('.')[0]) && a.YilDers==2015 ).Select(a => a).ToList();
             int yil = int.Parse(o.AktifKayitDonemi.Substring(0, 1));
-            secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil == yil  &&  a.YilDers==2014).Select(a => a).ToList();
+            secilebilecekDersler = ctx.AcilanDersler.Where(a => a.YariYil == yil  &&  a.YilDers==2016).Select(a => a).ToList();
             oncedenAlinmis_Kayit = ctx.Kayit.Where(a => a.OgrenciNo == o.OgrenciNo).Select(a => a).ToList();
             gecilenDersler = ctx.Notlar.Where(a => a.kayit.OgrenciNo == o.OgrenciNo && a.YilNot>49).Select(a=>a.KayitId).ToList();
             
@@ -207,7 +207,7 @@ namespace proje_obs.Controllers
             bool krediDurumuUygunMu = false;
             List<AcilanDersler> secilmis = (List < AcilanDersler > )Session["secilmis"];
             List<Kayit> onaylanmamisSilinecekKayitlar = null;
-            Kayit k=null;
+            Kayit k=new Kayit();
             int sum=0;
             Dersler d=null;
             foreach(var i in secilmis)
@@ -231,11 +231,36 @@ namespace proje_obs.Controllers
                 }
                 foreach(var i in secilmis)
                 {
+                    k = new Kayit();
                     k.ADId = i.ADId;
                     k.OgrenciNo = o.OgrenciNo;
                     k.OnaylandiMi = false;
-                    k.NotId = 0;
+                    
                     ctx.Kayit.Add(k);
+                }
+                ctx.SaveChanges();
+                var nullNotluKayitlar = ctx.Kayit.Where(kayit => kayit.not == null).ToList();
+                List<Notlar> nullNotluKayitlarinNotlari = new List<Notlar>();
+                foreach(var asdf in nullNotluKayitlar)
+                {
+                    
+                    Notlar not = new Notlar();
+                    not.kayit = asdf;
+                    not.But = 0;
+                    not.Final = 0;
+                    not.HarfNotu = "FF";
+                    not.KayitId = asdf.KayitId;
+                    not.OtomatikMi = "false";
+                    not.Vize = 0;
+                    not.YilNot = 0;
+                    ctx.Notlar.Add(not);
+                }
+                ctx.SaveChanges();
+                var b = ctx.Kayit.Where(kayit => kayit.not == null && ctx.Notlar.Any(nt => nt.KayitId == kayit.KayitId));
+                foreach(var j in b)
+                {
+                    j.NotId = ctx.Notlar.First(nt => nt.KayitId == j.KayitId).NotId;
+                    j.not = ctx.Notlar.First(nt => nt.KayitId == j.KayitId);
                 }
                 ctx.SaveChanges();
                 ctx.Dispose();

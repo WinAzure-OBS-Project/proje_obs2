@@ -206,5 +206,11 @@ namespace proje_obs.Controllers
             ctx.Dispose();
             return PartialView();
         }
+
+        public ActionResult ErrorPage(String error)
+        {
+            ViewBag.Error = error;
+            return View();
+        }
     }
 }
