@@ -9,15 +9,15 @@
         </tr>
         <tr>
             <td>Adı Soyadı</td>
-            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes((Model.Adi + " " + Model.Soyadi)))</td>
+            <td>@(Model.Adi + " " + Model.Soyadi)</td>
         </tr>
         <tr>
             <td>Telefonu</td>
-            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Telefonu))</td>
+            <td>@(Model.Telefonu)</td>
         </tr>
         <tr>
             <td>Maili</td>
-            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Maili))</td>
+            <td>@(Model.Maili)</td>
         </tr>
 
     </table>

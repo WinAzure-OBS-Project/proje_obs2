@@ -11,7 +11,7 @@
     @foreach(Ogrenci o in Model)
     {
         <tr>
-            <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Ad + " " + o.Soyad))</td>
+            <td>@(o.Ad + " " + o.Soyad)</td>
             <td>@o.OgrenciNo</td>
             <td>@o.Ad</td>
             <td>@o.Soyad</td>

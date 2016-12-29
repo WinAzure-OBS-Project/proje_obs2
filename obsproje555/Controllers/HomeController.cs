@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -43,6 +44,48 @@ namespace proje_obs.Controllers
 
             }
             return View();
+        }
+
+        //YÖNETİMSEL
+        public ActionResult Turkcelestir()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            var Dersler = ctx.Dersler.ToList();
+            var AcilanDersler = ctx.AcilanDersler.ToList();
+            var Ogrenciler = ctx.Ogrenci.ToList();
+            var Hocalar = ctx.DersSorumlulari.ToList();
+            var idariler = ctx.Idari.ToList();
+            foreach(Dersler d in Dersler)
+            {
+                d.DersAdi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(d.DersAdi));
+            }
+            foreach(AcilanDersler ad in AcilanDersler)
+            {
+                ad.DersAdi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(ad.DersAdi));
+            }
+            foreach(Ogrenci o in Ogrenciler)
+            {
+                o.Ad = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Ad));
+                o.Eposta = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Eposta));
+                o.AktifKayitDonemi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.AktifKayitDonemi));
+                o.Soyad = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Soyad));
+            }
+            foreach(Idari o in idariler)
+            {
+                o.Adi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Adi));
+                o.Mail = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Mail));
+                o.Soyadi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Soyadi));
+            }
+            foreach(DersSorumlulari o in Hocalar)
+            {
+                o.Adi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Adi));
+                o.Maili = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Maili));
+                o.Soyadi = Encoding.UTF8.GetString(Encoding.Default.GetBytes(o.Soyadi));
+            }
+            ctx.SaveChanges();
+            ctx.Dispose();
+
+            return RedirectToAction("Index");
         }
 
         //YÖNETİMSEL

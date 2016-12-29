@@ -5,15 +5,15 @@
             <table>
                 <tr>
                     <td>Öğrenci Numarası:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.OgrenciNo.ToString()))</td>
+                    <td>@(Model.OgrenciNo.ToString())</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Adı:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Ad))</td>
+                    <td>@(Model.Ad)</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Soyadı:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Soyad))</td>
+                    <td>@(Model.Soyad)</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Doğum Tarihi:</td>
@@ -21,15 +21,15 @@
                 </tr>
                 <tr>
                     <td>Öğrenci Aktif Kayıt Dönemi:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.AktifKayitDonemi))</td>
+                    <td>@(Model.AktifKayitDonemi)</td>
                 </tr>
                 <tr>
                     <td>Öğrenci E-posta:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Eposta))</td>
+                    <td>@(Model.Eposta)</td>
                 </tr>
                 <tr>
                     <td>Öğrenci Telefonu:</td>
-                    <td>@Encoding.UTF8.GetString(Encoding.Default.GetBytes(Model.Telefon))</td>
+                    <td>@(Model.Telefon)</td>
                 </tr>
 
             </table>

@@ -28,15 +28,9 @@ else if ( document.getElementById(blockId).style.display == '' ) {
     var kayitlar7 = kayitlar.Where(a => a.AcilanDers.YariYil == 7).ToList();
     var kayitlar8 = kayitlar.Where(a => a.AcilanDers.YariYil == 8).ToList();
     kayitlar.OrderBy(a => a.AcilanDers.YariYil);
-    <a href="/Ogrenci">Anasayfa</a>
-    <input type="button" value="Göster/Gizle - 1.Yarıyıl" onclick="showMe('y1');" />
-    <input type="button" value="Göster/Gizle - 2.Yarıyıl" onclick="showMe('y2');" />
-    <input type="button" value="Göster/Gizle - 3.Yarıyıl" onclick="showMe('y3');" />
-    <input type="button" value="Göster/Gizle - 4.Yarıyıl" onclick="showMe('y4');" />
-    <input type="button" value="Göster/Gizle - 5.Yarıyıl" onclick="showMe('y5');" />
-    <input type="button" value="Göster/Gizle - 6.Yarıyıl" onclick="showMe('y6');" />
-    <input type="button" value="Göster/Gizle - 7.Yarıyıl" onclick="showMe('y7');" />
-    <input type="button" value="Göster/Gizle - 8.Yarıyıl" onclick="showMe('y8');" />
+    <a href="/Ogrenci">Anasayfa</a><br />
+    <input type="button" value="Goster/Gizle - 1.Yariyil" onclick="showMe('y1');" /><br />
+    
     <div style="display:none" id="y1">
     <table style="border:1px">
     <thead>
@@ -49,9 +43,10 @@ else if ( document.getElementById(blockId).style.display == '' ) {
             <td>Harf Notu</td>
         </tr>
     </thead>
+
     @foreach (var k in kayitlar1)
     {
-
+        
         using (Html.BeginForm("TranskriptGor", "Ogrenci"))
         {
             <tr>
@@ -77,6 +72,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 2.Yariyil" onclick="showMe('y2');" /><br />
     <div style="display:none" id="y2"><table style="border:1px">
     <thead>
         <tr>
@@ -116,6 +112,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 3.Yariyil" onclick="showMe('y3');" /><br />
     <div style="display:none" id="y3"><table style="border:1px">
     <thead>
         <tr>
@@ -155,6 +152,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 4.Yariyil" onclick="showMe('y4');" /><br />
     <div style="display:none" id="y4"><table style="border:1px">
     <thead>
         <tr>
@@ -194,6 +192,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 5.Yariyil" onclick="showMe('y5');" /><br />
     <div style="display:none" id="y5"><table style="border:1px">
     <thead>
         <tr>
@@ -233,6 +232,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 6.Yariyil" onclick="showMe('y6');" /><br />
     <div style="display:none" id="y6"><table style="border:1px">
     <thead>
         <tr>
@@ -272,6 +272,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
         }
     }
 </table></div>
+<input type="button" value="Goster/Gizle - 7.Yariyil" onclick="showMe('y7');" /><br />
     <div style="display:none" id="y7"><table style="border:1px">
     <thead>
         <tr>
@@ -310,7 +311,9 @@ else if ( document.getElementById(blockId).style.display == '' ) {
             </tr>
         }
     }
+
 </table></div>
+<input type="button" value="Goster/Gizle - 8.Yariyil" onclick="showMe('y8');" /><br />
     <div style="display:none" id="y8"><table style="border:1px">
     <thead>
         <tr>
@@ -322,6 +325,7 @@ else if ( document.getElementById(blockId).style.display == '' ) {
             <td>Harf Notu</td>
         </tr>
     </thead>
+
     @foreach (var k in kayitlar8)
     {
 
