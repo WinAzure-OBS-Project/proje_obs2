@@ -51,20 +51,20 @@ namespace proje_obs.Controllers
         }
 
         //eski yöntem
-        [HttpPost]
-        public ActionResult Login(DersSorumlulari ogretimElemani)
-        {
-            ObsDbContext ctx = new ObsDbContext();
-            var ogr = ctx.DersSorumlulari.FirstOrDefault(o => o.AkademisyenID == ogretimElemani.AkademisyenID &&
-            o.Sifre == ogretimElemani.Sifre);
-            if (ogr != null)
-            {
-                Session.Add("Id", ogretimElemani.AkademisyenID);
-                Session.Add("Ad", ogr.Adi);
-                Session.Add("Role", "OgretimElemani");
-            }
-            return RedirectToAction("Index");
-        }
+      //  [HttpPost]
+       // public ActionResult Login(DersSorumlulari ogretimElemani)
+      //  {
+       //     ObsDbContext ctx = new ObsDbContext();
+        //    var ogr = ctx.DersSorumlulari.FirstOrDefault(o => o.AkademisyenID == ogretimElemani.AkademisyenID &&
+         //   o.Sifre == ogretimElemani.Sifre);
+        //    if (ogr != null)
+         //   {
+          //      Session.Add("Id", ogretimElemani.AkademisyenID);
+         //       Session.Add("Ad", ogr.Adi);
+         //       Session.Add("Role", "OgretimElemani");
+         //   }
+         //   return RedirectToAction("Index");
+       // }
 
         [HttpPost]
         public ActionResult Logout()
