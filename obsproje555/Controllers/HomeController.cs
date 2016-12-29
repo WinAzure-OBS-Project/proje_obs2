@@ -13,17 +13,17 @@ namespace proje_obs.Controllers
         public ActionResult Index()
         {
             //Deneme:
-            ObsDbContext ctx = new ObsDbContext();
+            //ObsDbContext ctx = new ObsDbContext();
             //include örneği, eager loading.
-            var b1 = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.not").FirstOrDefault(b => b.OgrenciNo == 130401002);
-            ctx.Dispose();
-            var b2 = b1.kayitlar;
-            var b3 = b2.Select(b => b.not);
+            //var b1 = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.not").FirstOrDefault(b => b.OgrenciNo == 130401002);
+            //ctx.Dispose();
+            //var b2 = b1.kayitlar;
+            //var b3 = b2.Select(b => b.not);
             //referans testi
-            var a1 = ctx.Notlar.FirstOrDefault(a => a.NotId == 5);
-            var a2 = a1.kayit;
-            var a3 = a2.Ogrenci;
-            var a4 = a3.Ad;
+            //var a1 = ctx.Notlar.FirstOrDefault(a => a.NotId == 5);
+            //var a2 = a1.kayit;
+            //var a3 = a2.Ogrenci;
+           // var a4 = a3.Ad;
 
             if (Request.IsAuthenticated)
             {
