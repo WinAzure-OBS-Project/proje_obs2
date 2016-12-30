@@ -250,6 +250,7 @@ namespace proje_obs.Controllers
                 {
                     k = new Kayit();
                     k.ADId = i.ADId;
+                    
                     k.OgrenciNo = o.OgrenciNo;
                     k.OnaylandiMi = false;
                     

@@ -280,6 +280,14 @@ namespace proje_obs.Controllers
         {
             ObsDbContext ctx = new ObsDbContext();
             Notlar not = ctx.Notlar.First(n => n.NotId == notId);
+            if(not== null)
+            {
+                Console.WriteLine("not null");
+            }
+            else
+            {
+                Console.WriteLine(not.Final);
+            }
             not.Vize = vize;
             not.Final = final;
             not.But = butunleme;
