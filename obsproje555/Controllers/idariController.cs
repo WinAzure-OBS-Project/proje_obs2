@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -84,15 +86,15 @@ namespace proje_obs.Controllers
         [HttpPost]
         public ActionResult TarihEkle(String dersAcmaBaslangic, String dersAcmaBitis, String dersSecmeBaslangic, String dersSecmeBitis)
         {
-            
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
             ObsDbContext ctx = new ObsDbContext();
             DersTarihlers dt = new DersTarihlers();
             dt.Id = (DateTime.Now.Ticks % 1200).ToString();
             dt.Yil = DateTime.Now.Year.ToString();
-            dt.dersAcmaBaslangic = DateTime.Parse(dersAcmaBaslangic);
-            dt.dersAcmaBitis = DateTime.Parse(dersAcmaBitis);
-            dt.dersSecmeBaslangic = DateTime.Parse(dersSecmeBaslangic);
-            dt.dersSecmeBitis = DateTime.Parse(dersSecmeBitis);
+            dt.dersAcmaBaslangic = DateTime.ParseExact(dersAcmaBaslangic, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dt.dersAcmaBitis = DateTime.ParseExact(dersAcmaBitis, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dt.dersSecmeBaslangic = DateTime.ParseExact(dersSecmeBaslangic, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            dt.dersSecmeBitis = DateTime.ParseExact(dersSecmeBitis, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             ctx.DersTarihlers.Add(dt);
             ctx.SaveChanges();
             ctx.Dispose();

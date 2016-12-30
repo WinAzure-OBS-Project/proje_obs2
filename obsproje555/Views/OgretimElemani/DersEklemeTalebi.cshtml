@@ -22,10 +22,7 @@
                 <select name="DersKodu">
                     @foreach (Dersler ders in Model)
                     {
-                        byte[] bytes = Encoding.Default.GetBytes(ders.DersAdi);
-                        String myString = Encoding.UTF8.GetString(bytes);
-                        
-                        <option value="@ders.DersKodu">@myString</option>
+                        <option value="@ders.DersKodu">@ders.DersAdi</option>
                     }
                 </select>
             </td>
