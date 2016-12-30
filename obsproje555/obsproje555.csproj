@@ -273,6 +273,7 @@
     <Content Include="Views\Home\Sidebar.cshtml" />
     <Content Include="Views\idari\TarihleriListele.cshtml" />
     <Content Include="Views\Home\ErrorPage.cshtml" />
+    <Content Include="Views\Ogrenci\DanismanKim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

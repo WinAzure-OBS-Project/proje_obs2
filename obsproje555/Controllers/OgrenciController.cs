@@ -28,7 +28,14 @@ namespace proje_obs.Controllers
             }
             var ctx = new ObsDbContext();
             var Id = Convert.ToInt32(User.Identity.Name);
-            var ogr = ctx.Ogrenci.FirstOrDefault(o => o.OgrenciNo == Id);
+            var ogr = ctx.Ogrenci.Include("kayitlar").Include("kayitlar.not").FirstOrDefault(o => o.OgrenciNo == Id);
+            var kayitlar = ogr.kayitlar;
+            ViewBag.ortalama = 0;
+            foreach(Kayit k in kayitlar)
+            {
+                ViewBag.ortalama += k.not.YilNot;
+            }
+            ViewBag.ortalama = ViewBag.ortalama / kayitlar.Count;
             if (ogr != null)
             {
                 return View(ogr);
@@ -40,6 +47,16 @@ namespace proje_obs.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult DanismanKim()
+        {
+            ObsDbContext ctx = new ObsDbContext();
+            int id = Convert.ToInt32(User.Identity.Name);
+            var h = ctx.DersSorumlulari.First(hoca => hoca.AkademisyenID == ctx.Ogrenci.First(ogr => ogr.OgrenciNo == id).DanismanId);
+
+            return View(h);
         }
 
         [HttpPost]
